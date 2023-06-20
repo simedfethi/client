@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="activite">
+      <h2 data-cy="activiteDetailsHeading"><span jhiTranslate="scibscrmApp.activite.detail.title">Activite</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ activite.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.typeactivite">Typeactivite</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.TypeActivite.' + activite.typeactivite }}">{{ activite.typeactivite }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.resume">Resume</span></dt>
+        <dd>
+          <span>{{ activite.resume }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.dateEcheance">Date Echeance</span></dt>
+        <dd>
+          <span>{{ activite.dateEcheance | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.heureActivite">Heure Activite</span></dt>
+        <dd>
+          <span>{{ activite.heureActivite | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.importance">Importance</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.ImportanceCategory.' + activite.importance }}">{{ activite.importance }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.note">Note</span></dt>
+        <dd>
+          <span>{{ activite.note }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.activiteVu">Activite Vu</span></dt>
+        <dd>
+          <span>{{ activite.activiteVu }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.activiteAcheve">Activite Acheve</span></dt>
+        <dd>
+          <span>{{ activite.activiteAcheve }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ activite.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.activiteVuTime">Activite Vu Time</span></dt>
+        <dd>
+          <span>{{ activite.activiteVuTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.client">Client</span></dt>
+        <dd>
+          <div *ngIf="activite.client">
+            <a [routerLink]="['/customer', activite.client.id, 'view']">{{ activite.client.company }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.crmContact">Crm Contact</span></dt>
+        <dd>
+          <div *ngIf="activite.crmContact">
+            <a [routerLink]="['/crm-contact', activite.crmContact.id, 'view']">{{ activite.crmContact.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.transactionCRM">Transaction CRM</span></dt>
+        <dd>
+          <div *ngIf="activite.transactionCRM">
+            <a [routerLink]="['/transaction-crm', activite.transactionCRM.id, 'view']">{{ activite.transactionCRM.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="activite.employee">
+            <a [routerLink]="['/employee', activite.employee.id, 'view']">{{ activite.employee.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.activite.employeeInclus">Employee Inclus</span></dt>
+        <dd>
+          <span *ngFor="let employeeInclus of activite.employeeIncluses; let last = last">
+            <a [routerLink]="['/employee', employeeInclus.id, 'view']">{{ employeeInclus.employeeName }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/activite', activite.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "scibscrmApp": {
+    "uniteMesure": {
+      "home": {
+        "title": "UniteMesures",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Unite Mesure",
+        "createOrEditLabel": "Créer ou éditer un Unite Mesure",
+        "notFound": "Aucun Unite Mesure trouvé"
+      },
+      "created": "Un nouveau Unite Mesure a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Unite Mesure avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Unite Mesure avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Unite Mesure {{ id }} ?"
+      },
+      "detail": {
+        "title": "Unite Mesure"
+      },
+      "id": "ID",
+      "unitName": "Unit Name",
+      "unitShortName": "Unit Short Name",
+      "supplierOffer": "Supplier Offer"
+    }
+  }
+}

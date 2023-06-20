@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmRole">
+      <h2 data-cy="crmRoleDetailsHeading"><span jhiTranslate="scibscrmApp.crmRole.detail.title">Crm Role</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmRole.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmRole.roleName">Role Name</span></dt>
+        <dd>
+          <span>{{ crmRole.roleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmRole.roleCode">Role Code</span></dt>
+        <dd>
+          <span>{{ crmRole.roleCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmRole.roleDescription">Role Description</span></dt>
+        <dd>
+          <span>{{ crmRole.roleDescription }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-role', crmRole.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

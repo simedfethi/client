@@ -1,0 +1,27 @@
+{
+  "scibscrmApp": {
+    "crmRole": {
+      "home": {
+        "title": "CrmRoles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Role",
+        "createOrEditLabel": "Créer ou éditer un Crm Role",
+        "notFound": "Aucun Crm Role trouvé"
+      },
+      "created": "Un nouveau Crm Role a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Role avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Role avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Role {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Role"
+      },
+      "id": "ID",
+      "roleName": "Role Name",
+      "roleCode": "Role Code",
+      "roleDescription": "Role Description",
+      "crmPermission": "Crm Permission"
+    }
+  }
+}

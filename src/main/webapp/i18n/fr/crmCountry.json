@@ -1,0 +1,25 @@
+{
+  "scibscrmApp": {
+    "crmCountry": {
+      "home": {
+        "title": "CrmCountries",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Country",
+        "createOrEditLabel": "Créer ou éditer un Crm Country",
+        "notFound": "Aucun Crm Country trouvé"
+      },
+      "created": "Un nouveau Crm Country a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Country avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Country avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Country {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Country"
+      },
+      "id": "ID",
+      "countryName": "Country Name",
+      "crmWilaya": "Crm Wilaya"
+    }
+  }
+}

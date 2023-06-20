@@ -1,0 +1,239 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-crm-document-line-heading"
+        data-cy="CrmDocumentLineCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.crmDocumentLine.home.createOrEditLabel"
+      >
+        Create or edit a Crm Document Line
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.lignePos" for="field_lignePos">Ligne Pos</label>
+          <input type="number" class="form-control" name="lignePos" id="field_lignePos" data-cy="lignePos" formControlName="lignePos" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.itemRef" for="field_itemRef">Item Ref</label>
+          <input type="text" class="form-control" name="itemRef" id="field_itemRef" data-cy="itemRef" formControlName="itemRef" />
+          <div *ngIf="editForm.get('itemRef')!.invalid && (editForm.get('itemRef')!.dirty || editForm.get('itemRef')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('itemRef')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.itemDescription" for="field_itemDescription"
+            >Item Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="itemDescription"
+            id="field_itemDescription"
+            data-cy="itemDescription"
+            formControlName="itemDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('itemDescription')!.invalid &&
+              (editForm.get('itemDescription')!.dirty || editForm.get('itemDescription')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('itemDescription')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.qte" for="field_qte">Qte</label>
+          <input type="number" class="form-control" name="qte" id="field_qte" data-cy="qte" formControlName="qte" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.qteExpedited" for="field_qteExpedited">Qte Expedited</label>
+          <input
+            type="number"
+            class="form-control"
+            name="qteExpedited"
+            id="field_qteExpedited"
+            data-cy="qteExpedited"
+            formControlName="qteExpedited"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.unitPrice" for="field_unitPrice">Unit Price</label>
+          <input type="number" class="form-control" name="unitPrice" id="field_unitPrice" data-cy="unitPrice" formControlName="unitPrice" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.reductionPercent" for="field_reductionPercent"
+            >Reduction Percent</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="reductionPercent"
+            id="field_reductionPercent"
+            data-cy="reductionPercent"
+            formControlName="reductionPercent"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.unitPriceNet" for="field_unitPriceNet">Unit Price Net</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unitPriceNet"
+            id="field_unitPriceNet"
+            data-cy="unitPriceNet"
+            formControlName="unitPriceNet"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.reductionAmount" for="field_reductionAmount"
+            >Reduction Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="reductionAmount"
+            id="field_reductionAmount"
+            data-cy="reductionAmount"
+            formControlName="reductionAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.taxPercent" for="field_taxPercent">Tax Percent</label>
+          <input
+            type="number"
+            class="form-control"
+            name="taxPercent"
+            id="field_taxPercent"
+            data-cy="taxPercent"
+            formControlName="taxPercent"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.totalht" for="field_totalht">Totalht</label>
+          <input type="number" class="form-control" name="totalht" id="field_totalht" data-cy="totalht" formControlName="totalht" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.totalttc" for="field_totalttc">Totalttc</label>
+          <input type="number" class="form-control" name="totalttc" id="field_totalttc" data-cy="totalttc" formControlName="totalttc" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.unite" for="field_unite">Unite</label>
+          <select
+            class="form-control"
+            id="field_unite"
+            data-cy="unite"
+            name="unite"
+            formControlName="unite"
+            [compareWith]="compareUniteMesure"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="uniteMesureOption" *ngFor="let uniteMesureOption of uniteMesuresSharedCollection">
+              {{ uniteMesureOption.unitShortName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.sourceAprov" for="field_sourceAprov">Source Aprov</label>
+          <select
+            class="form-control"
+            id="field_sourceAprov"
+            data-cy="sourceAprov"
+            name="sourceAprov"
+            formControlName="sourceAprov"
+            [compareWith]="compareCrmConcurrent"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="crmConcurrentOption" *ngFor="let crmConcurrentOption of crmConcurrentsSharedCollection">
+              {{ crmConcurrentOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.produit" for="field_produit">Produit</label>
+          <select
+            class="form-control"
+            id="field_produit"
+            data-cy="produit"
+            name="produit"
+            formControlName="produit"
+            [compareWith]="compareProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="productOption" *ngFor="let productOption of productsSharedCollection">
+              {{ productOption.designation }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocumentLine.crmDocument" for="field_crmDocument">Crm Document</label>
+          <select
+            class="form-control"
+            id="field_crmDocument"
+            data-cy="crmDocument"
+            name="crmDocument"
+            formControlName="crmDocument"
+            [compareWith]="compareCrmDocument"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="crmDocumentOption" *ngFor="let crmDocumentOption of crmDocumentsSharedCollection">
+              {{ crmDocumentOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

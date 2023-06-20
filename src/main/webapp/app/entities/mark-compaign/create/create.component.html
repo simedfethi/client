@@ -1,0 +1,174 @@
+<div class="content container" >
+
+
+</div>
+
+<form class="wizard-form steps-validation wizard clearfix" action="#" role="application" id="steps-uid-4" novalidate="novalidate">
+  <div class="steps clearfix">
+    <ul role="tablist">
+      <li role="tab" class="first current" [ngClass]="[currentStep>1 ? 'done' : '',currentStep==1 ? 'current' : '']" aria-disabled="false" aria-selected="true">
+        <a id="steps-uid-4-t-0" href="#steps-uid-4-h-0" (click)="setStep(1,$event)" aria-controls="steps-uid-4-p-0" class="">
+          <span class="current-info audible">current step: </span>
+          <span class="number">1</span>Selection Compagne</a>
+      </li>
+      <li role="tab" class="disabled"  [ngClass]="[currentStep>2 ? 'done' : '',currentStep==2 ? 'current' : '']" aria-disabled="true">
+        <a id="steps-uid-4-t-1" href="#steps-uid-4-h-1" (click)="setStep(2,$event)" aria-controls="steps-uid-4-p-1" class="disabled">
+          <span class="number">2</span> Informations compagne</a>
+      </li>
+      <li role="tab" class="disabled" [ngClass]="[currentStep>3 ? 'done' : '',currentStep==3 ? 'current' : '']" aria-disabled="true">
+        <a id="steps-uid-4-t-2" href="#steps-uid-4-h-2" (click)="setStep(3,$event)" aria-controls="steps-uid-4-p-2" class="disabled">
+          <span class="number">3</span> Segment Clientele</a>
+      </li>
+      <li role="tab" class="disabled last" [ngClass]="[currentStep>4 ? 'done' : '',currentStep==4 ? 'current' : '']" aria-disabled="true">
+        <a id="steps-uid-4-t-3" href="#steps-uid-4-h-3" (click)="setStep(4,$event)" aria-controls="steps-uid-4-p-3" class="disabled">
+          <span class="number">4</span> Design</a>
+      </li>
+    </ul>
+  </div>
+  <div class="content clearfix">
+    <h6 id="steps-uid-4-h-0" tabindex="-1" class="title current">Personal data</h6>
+    <fieldset *ngIf="currentStep===1" id="steps-uid-4-p-0" role="tabpanel" aria-labelledby="steps-uid-4-h-0" class="body current" aria-hidden="false">
+      <div class="d-flex justify-content-center align-items-center" style="height: 250px">
+        <div class="flex-column">
+          <h1>Veuillez selectionner un type de compagne marketing</h1>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="ui-tile-list-item">
+              <button type="button" (click)="selectSMS()" class="btn btn-success rounded-pill p-2 mx-2 mb-2">
+                <i class="ph-phone-call ph-1x m-1"></i>
+              </button>
+              compagne sms
+            </div>
+            <div class="ui-tile-list-item">
+              <button type="button" (click)="selectEmail()" class="btn btn-danger rounded-pill p-2 mx-2 mb-2">
+                <i class="ph-download-simple ph-1x m-1"></i>
+              </button>
+              marketing par email
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
+
+    <h6 id="steps-uid-4-h-1" tabindex="-1" class="title">Your education</h6>
+    <fieldset *ngIf="currentStep===2" id="steps-uid-4-p-1" role="tabpanel" aria-labelledby="steps-uid-4-h-1" class="body" aria-hidden="true" >
+      <div class="ghcontainer p-3" style="height: 250px">
+        <div class="row mb-3">
+        <h1> Démarrer une compagne {{markCompaign.compaigntype}}</h1>
+        </div>
+        <div class="col-md-6">
+          <div class="row mb-3">
+            <label class="form-label"  for="field_subject">Sujet</label>
+            <input [(ngModel)]="markCompaign.subject" type="text" class="form-control" name="subject" id="field_subject" data-cy="subject"   />
+          </div>
+
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.priorityM" for="field_priorityM">Priority M</label>
+            <select class="form-control" name="priorityM"   id="field_priorityM" data-cy="priorityM" [(ngModel)]="markCompaign.priorityM">
+              <option [ngValue]="null">{{ 'scibscrmApp.Compaignpriority.null' | translate }}</option>
+              <option *ngFor="let compaignpriority of compaignpriorityValues" [value]="compaignpriority">
+                {{ 'scibscrmApp.Compaignpriority.' + compaignpriority | translate }}
+              </option>
+            </select>
+          </div>
+
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.sender" for="field_sender">Sender</label>
+            <select
+              class="form-control"
+              id="field_sender"
+              data-cy="sender"
+              name="sender"
+            [(ngModel)]="markCompaign.sender"
+            >
+              <option [ngValue]="null"></option>
+              <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+                {{ employeeOption.employeeName }}
+              </option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+
+    <h6 id="steps-uid-4-h-2" tabindex="-1" class="title">Your experience</h6>
+    <fieldset *ngIf="currentStep===3" id="steps-uid-4-p-2" role="tabpanel" aria-labelledby="steps-uid-4-h-2" class="body" aria-hidden="true"  >
+      <div class="col-md-6" style="height: 250px">
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.markCompaign.markSegment" for="field_markSegments">Mark Segment</label>
+          <select
+            class="form-control"
+            id="field_markSegments"
+            data-cy="markSegment"
+            multiple
+            name="markSegments"
+           [(ngModel)]="markCompaign.markSegments"
+          >
+            <option [ngValue]="markSegmentOption" *ngFor="let markSegmentOption of markSegmentsSharedCollection">
+              {{ markSegmentOption.segmentName }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <h6 id="steps-uid-4-h-3" tabindex="-1" class="title">Additional info</h6>
+    <fieldset *ngIf="currentStep===4" id="steps-uid-4-p-3" role="tabpanel" aria-labelledby="steps-uid-4-h-3" class="body" aria-hidden="true" >
+      <h1>Selectionner a partir d'un Modele</h1>
+      <div class="row">
+
+
+      <div class="col">
+        <div class="d-flex flex-wrap gap-4" >
+          <div class="blank-design">
+            <a href="#" class="link-with-image" (click)="loadTemplate(null,$event)">
+              <div class="d-flex flex-column">
+                <h2>Modele Vierge</h2>
+
+
+              </div>
+
+            </a>
+          </div>
+        <div class="gallery-element" *ngFor="let email of emailTemplates">
+          <a href="#" class="link-with-image" (click)="loadTemplate(email,$event)">
+            <div class="d-flex flex-column">
+              <h2>{{email.templateName}}</h2>
+
+              <img src="{{openFile(email)}}" *ngIf="email.attachments" >
+            </div>
+
+          </a>
+          </div>
+
+        </div>
+
+        <button (click)="createcanva()"> create capture</button>
+      </div>
+      </div>
+      <div class="row">
+        <jhi-unlayer #layo [jsontemplate]="tpm!.templateContent" *ngIf="markCompaign?.compaigntype==='EMAIL'"></jhi-unlayer>
+        <textarea *ngIf="markCompaign?.compaigntype==='SMS'"></textarea>
+      </div>
+
+
+
+    </fieldset>
+  </div>
+  <div class="actions clearfix"><ul role="menu" aria-label="Pagination">
+    <li class="disabled" aria-disabled="true">
+      <a href="#previous" (click)="prevStep($event)" class="btn btn-light" [ngClass]="currentStep==1 ? 'disabled' : ''" role="menuitem">
+        <i class="ph-arrow-circle-left me-2"></i> Previous</a>
+    </li>
+    <li aria-hidden="false" aria-disabled="false" *ngIf="currentStep<4">
+      <a href="#next" (click)="nextStep($event)" class="btn btn-primary" role="menuitem">Next <i class="ph-arrow-circle-right ms-2"></i></a>
+    </li>
+    <li aria-hidden="true" *ngIf="currentStep==4">
+      <a href="#finish" class="btn btn-primary" role="menuitem">Enregistrer <i class="ph-paper-plane-tilt ms-2">
+      </i></a>
+    </li>
+  </ul>
+  </div>
+</form>

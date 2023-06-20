@@ -1,0 +1,235 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-activite-heading" data-cy="ActiviteCreateUpdateHeading" jhiTranslate="scibscrmApp.activite.home.createOrEditLabel">
+        Create or edit a Activite
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.typeactivite" for="field_typeactivite">Typeactivite</label>
+          <select class="form-control" name="typeactivite" formControlName="typeactivite" id="field_typeactivite" data-cy="typeactivite">
+            <option [ngValue]="null">{{ 'scibscrmApp.TypeActivite.null' | translate }}</option>
+            <option *ngFor="let typeActivite of typeActiviteValues" [value]="typeActivite">
+              {{ 'scibscrmApp.TypeActivite.' + typeActivite | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.resume" for="field_resume">Resume</label>
+          <input type="text" class="form-control" name="resume" id="field_resume" data-cy="resume" formControlName="resume" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.dateEcheance" for="field_dateEcheance">Date Echeance</label>
+          <div class="input-group">
+            <input
+              id="field_dateEcheance"
+              data-cy="dateEcheance"
+              type="text"
+              class="form-control"
+              name="dateEcheance"
+              ngbDatepicker
+              #dateEcheanceDp="ngbDatepicker"
+              formControlName="dateEcheance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEcheanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.heureActivite" for="field_heureActivite">Heure Activite</label>
+          <div class="d-flex">
+            <input
+              id="field_heureActivite"
+              data-cy="heureActivite"
+              type="datetime-local"
+              class="form-control"
+              name="heureActivite"
+              formControlName="heureActivite"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.importance" for="field_importance">Importance</label>
+          <select class="form-control" name="importance" formControlName="importance" id="field_importance" data-cy="importance">
+            <option [ngValue]="null">{{ 'scibscrmApp.ImportanceCategory.null' | translate }}</option>
+            <option *ngFor="let importanceCategory of importanceCategoryValues" [value]="importanceCategory">
+              {{ 'scibscrmApp.ImportanceCategory.' + importanceCategory | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.note" for="field_note">Note</label>
+          <textarea class="form-control" name="note" id="field_note" data-cy="note" formControlName="note"></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.activiteVu" for="field_activiteVu">Activite Vu</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="activiteVu"
+            id="field_activiteVu"
+            data-cy="activiteVu"
+            formControlName="activiteVu"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.activiteAcheve" for="field_activiteAcheve">Activite Acheve</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="activiteAcheve"
+            id="field_activiteAcheve"
+            data-cy="activiteAcheve"
+            formControlName="activiteAcheve"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.endTime" for="field_endTime">End Time</label>
+          <div class="d-flex">
+            <input
+              id="field_endTime"
+              data-cy="endTime"
+              type="datetime-local"
+              class="form-control"
+              name="endTime"
+              formControlName="endTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.activiteVuTime" for="field_activiteVuTime">Activite Vu Time</label>
+          <div class="d-flex">
+            <input
+              id="field_activiteVuTime"
+              data-cy="activiteVuTime"
+              type="datetime-local"
+              class="form-control"
+              name="activiteVuTime"
+              formControlName="activiteVuTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.client" for="field_client">Client</label>
+          <select
+            class="form-control"
+            id="field_client"
+            data-cy="client"
+            name="client"
+            formControlName="client"
+            [compareWith]="compareCustomer"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="customerOption" *ngFor="let customerOption of customersSharedCollection">
+              {{ customerOption.company }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.crmContact" for="field_crmContact">Crm Contact</label>
+          <select
+            class="form-control"
+            id="field_crmContact"
+            data-cy="crmContact"
+            name="crmContact"
+            formControlName="crmContact"
+            [compareWith]="compareCrmContact"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="crmContactOption" *ngFor="let crmContactOption of crmContactsSharedCollection">
+              {{ crmContactOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.transactionCRM" for="field_transactionCRM">Transaction CRM</label>
+          <select
+            class="form-control"
+            id="field_transactionCRM"
+            data-cy="transactionCRM"
+            name="transactionCRM"
+            formControlName="transactionCRM"
+            [compareWith]="compareTransactionCRM"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transactionCRMOption" *ngFor="let transactionCRMOption of transactionCRMSSharedCollection">
+              {{ transactionCRMOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.activite.employee" for="field_employee">Employee</label>
+          <select
+            class="form-control"
+            id="field_employee"
+            data-cy="employee"
+            name="employee"
+            formControlName="employee"
+            [compareWith]="compareEmployee"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">{{ employeeOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.activite.employeeInclus" for="field_employeeIncluses">Employee Inclus</label>
+          <select
+            class="form-control"
+            id="field_employeeIncluses"
+            data-cy="employeeInclus"
+            multiple
+            name="employeeIncluses"
+            formControlName="employeeIncluses"
+            [compareWith]="compareEmployee"
+          >
+            <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+              {{ employeeOption.employeeName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "employerNumber": {
+      "home": {
+        "title": "Employer Numbers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Employer Number",
+        "createOrEditLabel": "Create or edit a Employer Number",
+        "notFound": "No Employer Numbers found"
+      },
+      "created": "A new Employer Number is created with identifier {{ param }}",
+      "updated": "A Employer Number is updated with identifier {{ param }}",
+      "deleted": "A Employer Number is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Employer Number {{ id }}?"
+      },
+      "detail": {
+        "title": "Employer Number"
+      },
+      "id": "ID",
+      "emplNumber": "Empl Number"
+    }
+  }
+}

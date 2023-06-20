@@ -1,0 +1,337 @@
+<div class="m-3">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-company-heading" data-cy="CompanyCreateUpdateHeading" >
+        Créer or editer une entreprise
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_company">Raison Sociale</label>
+          <input type="text" class="form-control" name="company" id="field_company" data-cy="company" formControlName="company" />
+          <div *ngIf="editForm.get('company')!.invalid && (editForm.get('company')!.dirty || editForm.get('company')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('company')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_lastName">Prénom</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+          <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_firstName">Nom</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+          <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_emailAddress">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="emailAddress"
+            id="field_emailAddress"
+            data-cy="emailAddress"
+            formControlName="emailAddress"
+          />
+          <div
+            *ngIf="editForm.get('emailAddress')!.invalid && (editForm.get('emailAddress')!.dirty || editForm.get('emailAddress')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('emailAddress')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_jobTitle">Fonction</label>
+          <input type="text" class="form-control" name="jobTitle" id="field_jobTitle" data-cy="jobTitle" formControlName="jobTitle" />
+          <div *ngIf="editForm.get('jobTitle')!.invalid && (editForm.get('jobTitle')!.dirty || editForm.get('jobTitle')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('jobTitle')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_businessPhone">Téléphone</label>
+          <input
+            type="text"
+            class="form-control"
+            name="businessPhone"
+            id="field_businessPhone"
+            data-cy="businessPhone"
+            formControlName="businessPhone"
+          />
+          <div
+            *ngIf="
+              editForm.get('businessPhone')!.invalid && (editForm.get('businessPhone')!.dirty || editForm.get('businessPhone')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('businessPhone')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 25 }"
+            >
+              This field cannot be longer than 25 characters.
+            </small>
+          </div>
+        </div>
+
+
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_mobilePhone">Mobile</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mobilePhone"
+            id="field_mobilePhone"
+            data-cy="mobilePhone"
+            formControlName="mobilePhone"
+          />
+          <div *ngIf="editForm.get('mobilePhone')!.invalid && (editForm.get('mobilePhone')!.dirty || editForm.get('mobilePhone')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('mobilePhone')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 25 }"
+            >
+              This field cannot be longer than 25 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_faxNumber">Fax</label>
+          <input type="text" class="form-control" name="faxNumber" id="field_faxNumber" data-cy="faxNumber" formControlName="faxNumber" />
+          <div *ngIf="editForm.get('faxNumber')!.invalid && (editForm.get('faxNumber')!.dirty || editForm.get('faxNumber')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('faxNumber')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 25 }"
+            >
+              This field cannot be longer than 25 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_address">Adresse</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_city">Ville</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+          <div *ngIf="editForm.get('city')!.invalid && (editForm.get('city')!.dirty || editForm.get('city')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('city')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_stateProvince">Wilaya</label>
+          <input
+            type="text"
+            class="form-control"
+            name="stateProvince"
+            id="field_stateProvince"
+            data-cy="stateProvince"
+            formControlName="stateProvince"
+          />
+          <div
+            *ngIf="
+              editForm.get('stateProvince')!.invalid && (editForm.get('stateProvince')!.dirty || editForm.get('stateProvince')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('stateProvince')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_zipPostalCode">Code Postal</label>
+          <input
+            type="text"
+            class="form-control"
+            name="zipPostalCode"
+            id="field_zipPostalCode"
+            data-cy="zipPostalCode"
+            formControlName="zipPostalCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('zipPostalCode')!.invalid && (editForm.get('zipPostalCode')!.dirty || editForm.get('zipPostalCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('zipPostalCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 15 }"
+            >
+              This field cannot be longer than 15 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_countryRegion">Pays</label>
+          <input
+            type="text"
+            class="form-control"
+            name="countryRegion"
+            id="field_countryRegion"
+            data-cy="countryRegion"
+            formControlName="countryRegion"
+          />
+          <div
+            *ngIf="
+              editForm.get('countryRegion')!.invalid && (editForm.get('countryRegion')!.dirty || editForm.get('countryRegion')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('countryRegion')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_webPage">Site web</label>
+          <input type="text" class="form-control" name="webPage" id="field_webPage" data-cy="webPage" formControlName="webPage" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.company.notes" for="field_notes">Notes</label>
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"   for="field_attachments">Logo</label>
+          <div>
+            <div *ngIf="editForm.get('attachments')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('attachments')!.value!, editForm.get('attachmentsContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('attachmentsContentType')!.value }}, {{ byteSize(editForm.get('attachments')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ attachments: undefined, attachmentsContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_attachments"
+              data-cy="attachments"
+              (change)="setFileData($event, 'attachments', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="attachments"
+            id="field_attachments"
+            data-cy="attachments"
+            formControlName="attachments"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="attachmentsContentType"
+            id="field_attachmentsContentType"
+            formControlName="attachmentsContentType"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

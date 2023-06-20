@@ -1,0 +1,99 @@
+<div class="card card-body">
+  <div class="row">
+    <div class="col-8">
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <h2
+          id="jhi-email-template-heading"
+          data-cy="EmailTemplateCreateUpdateHeading"
+          jhiTranslate="scibscrmApp.emailTemplate.home.createOrEditLabel"
+        >
+          Create or edit a Email Template
+        </h2>
+
+        <div>
+          <jhi-alert-error></jhi-alert-error>
+
+
+
+          <div class="row mb-3">
+            <label class="form-label" for="field_templateName">
+              Désignation du modele</label>
+            <input
+              type="text"
+              class="form-control"
+              name="templateName"
+              id="field_templateName"
+              data-cy="templateName"
+              formControlName="templateName"
+            />
+          </div>
+
+          <div class="row mb-3">
+            <label class="form-label"  for="field_emailSubject">Sujet</label>
+            <input
+              type="text"
+              class="form-control"
+              name="emailSubject"
+              id="field_emailSubject"
+              data-cy="emailSubject"
+              formControlName="emailSubject"
+            />
+          </div>
+
+
+
+          <div class="row mb-3">
+            <label class="form-label"   for="field_tempType">Type</label>
+            <select class="form-control"
+                    (change)="onTempTypeChange($event)"
+                    name="tempType" formControlName="tempType" id="field_tempType"
+                    data-cy="tempType">
+              <option [ngValue]="null">{{ 'scibscrmApp.TemplateType.null' | translate }}</option>
+              <option *ngFor="let templateType of templateTypeValues" [value]="templateType">
+                {{ 'scibscrmApp.TemplateType.' + templateType | translate }}
+              </option>
+            </select>
+          </div>
+
+          <div class="row mb-3" *ngIf="emailTemplate?.tempType==='SMS'">
+            <label class="form-label"  for="field_emailSubject">Contenu SMS</label>
+            <input
+              type="textarea"
+              class="form-control"
+              name="smscontent"
+              id="field_smscontent"
+              data-cy="smscontent"
+              formControlName="htmlContent"
+            />
+          </div>
+
+
+        </div>
+
+        <div>
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary"
+                  (click)="previousState()">
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+          </button>
+
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btn-primary"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+          </button>
+
+         </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="emailTemplate?.tempType ==='EMAIL'">
+    <jhi-unlayer   [jsontemplate]="emailTemplate?.templateContent"></jhi-unlayer>
+
+  </div>
+
+</div>

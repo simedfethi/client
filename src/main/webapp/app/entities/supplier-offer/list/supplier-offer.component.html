@@ -1,0 +1,177 @@
+<div>
+  <h2 id="page-heading" data-cy="SupplierOfferHeading">
+    <span jhiTranslate="scibscrmApp.supplierOffer.home.title">Supplier Offers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.supplierOffer.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-supplier-offer"
+        [routerLink]="['/supplier-offer/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.supplierOffer.home.createLabel"> Create a new Supplier Offer </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="supplierOffers?.length === 0">
+    <span jhiTranslate="scibscrmApp.supplierOffer.home.notFound">No Supplier Offers found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="supplierOffers && supplierOffers.length > 0">
+    <table class="table table-hover" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="regularPrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.regularPrice">Regular Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="discountPrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.discountPrice">Discount Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="notes">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.notes">Notes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="product.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.product">Product</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="uniteMesure.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.uniteMesure">Unite Mesure</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="supplier.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.supplier">Supplier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transactionCRM.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.transactionCRM">Transaction CRM</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deliveryTerm.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.supplierOffer.deliveryTerm">Delivery Term</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supplierOffer of supplierOffers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/supplier-offer', supplierOffer.id, 'view']">{{ supplierOffer.id }}</a>
+          </td>
+          <td>{{ supplierOffer.regularPrice }}</td>
+          <td>{{ supplierOffer.discountPrice }}</td>
+          <td>{{ supplierOffer.notes }}</td>
+          <td>
+            <div *ngIf="supplierOffer.product">
+              <a [routerLink]="['/product', supplierOffer.product.id, 'view']">{{ supplierOffer.product.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="supplierOffer.uniteMesure">
+              <a [routerLink]="['/unite-mesure', supplierOffer.uniteMesure.id, 'view']">{{ supplierOffer.uniteMesure.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="supplierOffer.supplier">
+              <a [routerLink]="['/supplier', supplierOffer.supplier.id, 'view']">{{ supplierOffer.supplier.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="supplierOffer.transactionCRM">
+              <a [routerLink]="['/transaction-crm', supplierOffer.transactionCRM.id, 'view']">{{ supplierOffer.transactionCRM.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="supplierOffer.deliveryTerm">
+              <a [routerLink]="['/delivery-term', supplierOffer.deliveryTerm.id, 'view']">{{ supplierOffer.deliveryTerm.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/supplier-offer', supplierOffer.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/supplier-offer', supplierOffer.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(supplierOffer)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="supplierOffers && supplierOffers.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "scibscrmApp": {
+    "TemplateType": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "SMS": "SMS"
+    }
+  }
+}

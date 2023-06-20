@@ -1,0 +1,144 @@
+<div class="m-3">
+  <div class="row">
+  <div class="col-lg-6">
+    <div *ngIf="customer">
+      <h2 data-cy="customerDetailsHeading"><span>Fiche Client</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Raison Sociale</span></dt>
+        <dd>
+          <span>{{ customer.company }}</span>
+        </dd>
+        <dt><span>Categorie</span></dt>
+        <dd>
+          <div *ngIf="customer.categorie">
+            <a [routerLink]="['/customer-category', customer.categorie.id, 'view']">{{ customer.categorie.catName }}</a>
+          </div>
+        </dd>
+
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ customer.emailAddress }}</span>
+        </dd>
+        <dt><span>Téléphone</span></dt>
+        <dd>
+          <span>{{ customer.businessPhone }}</span>
+        </dd>
+        <dt><span>Mobile</span></dt>
+        <dd>
+          <span>{{ customer.mobilePhone }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ customer.faxNumber }}</span>
+        </dd>
+        <dt><span>Addresse</span></dt>
+        <dd>
+          <span>{{ customer.addresse }}</span>
+        </dd>
+        <dt><span>Wilaya</span></dt>
+        <dd>
+          <span>{{ customer.wilaya }}</span>
+        </dd>
+        <dt><span>Daira</span></dt>
+        <dd>
+          <span>{{ customer.daira }}</span>
+        </dd>
+        <dt><span>Commune</span></dt>
+        <dd>
+          <span>{{ customer.commune }}</span>
+        </dd>
+        <dt><span>Code Postal</span></dt>
+        <dd>
+          <span>{{ customer.codePostal }}</span>
+        </dd>
+
+        <dt><span>Site Web</span></dt>
+        <dd>
+          <span>{{ customer.webPage }}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+          <span>{{ customer.notes }}</span>
+        </dd>
+         <dt><span jhiTranslate="scibscrmApp.customer.dejaClient">Deja Client</span></dt>
+        <dd>
+         <input type="checkbox" [checked]="customer.dejaClient" onclick="return false;">
+        </dd>
+
+
+        <dt><span jhiTranslate="scibscrmApp.customer.commercial">Commercial</span></dt>
+        <dd>
+          <div *ngIf="customer.commercial">
+            <a [routerLink]="['/employee', customer.commercial.id, 'view']">{{ customer.commercial.employeeName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.customer.customerSource">Source Client</span></dt>
+        <dd>
+          <div *ngIf="customer.customerSource">
+            <a [routerLink]="['/crm-c-ontact-source', customer.customerSource.id, 'view']">{{ customer.customerSource.contactSource }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.customer.aboutSource">A propos de la source</span></dt>
+        <dd>
+          <span>{{ customer.aboutSource }}</span>
+        </dd>
+
+        <dt><span>Nombre Employee</span></dt>
+        <dd>
+          <div *ngIf="customer.nombreEmployee">
+            <a [routerLink]="['/employer-number', customer.nombreEmployee.id, 'view']">{{ customer.nombreEmployee.emplNumber }}</a>
+          </div>
+        </dd>
+
+        <dt><span>Monnaie</span></dt>
+        <dd>
+          <div *ngIf="customer.caMonnaie">
+            <a [routerLink]="['/monnaie', customer.caMonnaie.id, 'view']">{{ customer.caMonnaie.moneyName }}</a>
+          </div>
+        </dd>
+        <dt><span>Contacts</span></dt>
+        <dd>
+             <div *ngFor="let crmContact of customer.crmContacts; let last = last">
+             <a [routerLink]="['/crm-contact', crmContact.id, 'view']">{{ crmContact.firstName}} {{crmContact.lastName}}</a
+             >{{ last ? '' : ', ' }}
+            </div>
+
+         </dd>
+
+        <dt><span>Date Création</span></dt>
+        <dd>
+          <span>{{ customer.createdTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Derniere mise a jour</span></dt>
+        <dd>
+          <span>{{ customer.lastUpdate | formatMediumDatetime }}</span>
+        </dd>
+
+
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/customer', customer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="m-3">
+      <div id="map" style="height: 600px"></div>
+      <jhi-activite-player [customer]="customer"></jhi-activite-player>
+
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "scibscrmApp": {
+    "CustomerType": {
+      "null": "",
+      "PHYSIQUE": "PHYSIQUE",
+      "MORALE": "MORALE"
+    }
+  }
+}

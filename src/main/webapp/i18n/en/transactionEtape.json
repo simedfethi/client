@@ -1,0 +1,27 @@
+{
+  "scibscrmApp": {
+    "transactionEtape": {
+      "home": {
+        "title": "Transaction Etapes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transaction Etape",
+        "createOrEditLabel": "Create or edit a Transaction Etape",
+        "notFound": "No Transaction Etapes found"
+      },
+      "created": "A new Transaction Etape is created with identifier {{ param }}",
+      "updated": "A Transaction Etape is updated with identifier {{ param }}",
+      "deleted": "A Transaction Etape is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transaction Etape {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction Etape"
+      },
+      "id": "ID",
+      "teName": "Te Name",
+      "teDescription": "Te Description",
+      "tebgColor": "Tebg Color",
+      "teIcon": "Te Icon"
+    }
+  }
+}

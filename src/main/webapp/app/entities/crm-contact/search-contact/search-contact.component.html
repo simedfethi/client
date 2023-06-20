@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="onSubmit()" [formGroup]="editForm">
+<div class="rounded border border-primary p-3">
+<div class="form-control-feedback form-control-feedback-start flex-grow-1" data-color-theme="white">
+  <input #search type="text"
+         class="form-control bg-transparent rounded-pill show"
+         placeholder="Contact , Téléphone , Email"
+         formControlName ="firstName"
+         aria-expanded="true"
+  >
+  <div class="form-control-feedback-icon">
+    <i class="ph-user-circle"></i>
+  </div>
+  <div class="position-absolute end-0 top-50 translate-middle-y me-1">
+    <button type="button" (click)="emptySearch()" class="btn btn-light btn-sm btn-icon rounded-pill">
+      <i class="ph-x ph-sm"></i>
+    </button>
+  </div>
+   <div class="dropdown-menu w-100 show" data-color-theme="light" *ngIf="modecreation===false && searchTerm.length>0">
+
+    <div class="dropdown-menu-scrollable-lg">
+
+      <div class="dropdown-item cursor-pointer" *ngFor="let item of crmContactCollection">
+
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="fw-semibold" (click)="selectContact(item)"> {{item.firstName}}</div>
+
+        </div>
+
+        <div class="d-inline-flex">
+          <a href="#" class="text-body ms-2">
+            <i class="ph-briefcase"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown-item cursor-pointer" *ngIf="crmContactCollection.length===0 && modecreation===false && isSearching===false">
+        <a  class="text-body ms-2" (click)="createContact()">Créer {{searchTerm}}</a>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+<div *ngIf="modecreation===true">
+
+
+    <label class="col-form-label-sm">Téléphone</label>
+    <div class="form-control-feedback form-control-feedback-start mb-3">
+      <input type="text" class="form-control" name="mobilephone" placeholder="Téléphone" formControlName="mobilePhone">
+      <div class="form-control-feedback-icon">
+        <i class="ph-phone"></i>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-form-label-sm">Email</label>
+      <input class="form-control" type="text" name="emailadresse" placeholder="Email" formControlName="emailAddress" >
+
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-form-label-sm">Adresse</label>
+      <input class="form-control" type="text" name="adresse" placeholder="Adresse" formControlName="addresse" >
+
+    </div>
+
+    <button type="" class="btn btn-primary" >Enregistrer</button>
+
+</div>
+
+</div>
+
+</form>

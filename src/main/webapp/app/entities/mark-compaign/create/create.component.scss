@@ -1,0 +1,46 @@
+.ui-tile-list-item {
+  width: 150px;
+  height:120px;
+  background-color: white;
+  margin: 16px 0 0 14px;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.link-with-image {
+  color: black;
+  text-decoration: none;
+}
+.link-with-image:hover {
+  color: black;
+}
+.gallery-element{
+  width: 250px;
+  min-height: 300px;
+ background-color: white;
+ margin: 5px;
+ border-radius: 15px;
+  border-color: #0b4e58;
+  align-content: center;
+  text-align: center;
+  padding: 5px;
+}
+.blank-design {
+  width: 250px;
+  min-height: 300px;
+  background-color: white;
+  margin: 5px;
+  border-radius: 15px;
+  border-color: #0b4e58;
+  align-content: center;
+  text-align: center;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+

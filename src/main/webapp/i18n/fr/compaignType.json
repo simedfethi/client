@@ -1,0 +1,11 @@
+{
+  "scibscrmApp": {
+    "CompaignType": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "SMS": "SMS",
+      "FACEBOOK": "FACEBOOK",
+      "INSTAGRAM": "INSTAGRAM"
+    }
+  }
+}

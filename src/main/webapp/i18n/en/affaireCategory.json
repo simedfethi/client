@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "affaireCategory": {
+      "home": {
+        "title": "Affaire Categories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Affaire Category",
+        "createOrEditLabel": "Create or edit a Affaire Category",
+        "notFound": "No Affaire Categories found"
+      },
+      "created": "A new Affaire Category is created with identifier {{ param }}",
+      "updated": "A Affaire Category is updated with identifier {{ param }}",
+      "deleted": "A Affaire Category is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Affaire Category {{ id }}?"
+      },
+      "detail": {
+        "title": "Affaire Category"
+      },
+      "id": "ID",
+      "categoryName": "Category Name"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "scibscrmApp": {
+    "crmDocType": {
+      "home": {
+        "title": "CrmDocTypes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Doc Type",
+        "createOrEditLabel": "Créer ou éditer un Crm Doc Type",
+        "notFound": "Aucun Crm Doc Type trouvé"
+      },
+      "created": "Un nouveau Crm Doc Type a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Doc Type avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Doc Type avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Doc Type {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Doc Type"
+      },
+      "id": "ID",
+      "cdtname": "Cdtname",
+      "cdtRef": "Cdt Ref"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scibscrmApp": {
+    "crmDocumentLine": {
+      "home": {
+        "title": "CrmDocumentLines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Document Line",
+        "createOrEditLabel": "Créer ou éditer un Crm Document Line",
+        "notFound": "Aucun Crm Document Line trouvé"
+      },
+      "created": "Un nouveau Crm Document Line a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Document Line avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Document Line avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Document Line {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Document Line"
+      },
+      "id": "ID",
+      "lignePos": "Ligne Pos",
+      "itemRef": "Item Ref",
+      "itemDescription": "Item Description",
+      "qte": "Qte",
+      "qteExpedited": "Qte Expedited",
+      "unitPrice": "Unit Price",
+      "reductionPercent": "Reduction Percent",
+      "unitPriceNet": "Unit Price Net",
+      "reductionAmount": "Reduction Amount",
+      "taxPercent": "Tax Percent",
+      "totalht": "Totalht",
+      "totalttc": "Totalttc",
+      "unite": "Unite",
+      "produit": "Produit",
+      "crmDocument": "Crm Document"
+    }
+  }
+}

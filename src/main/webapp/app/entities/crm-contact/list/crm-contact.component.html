@@ -1,0 +1,366 @@
+<div>
+  <h2 id="page-heading" data-cy="CrmContactHeading">
+    <span jhiTranslate="scibscrmApp.crmContact.home.title">Crm Contacts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmContact.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-crm-contact"
+        [routerLink]="['/crm-contact/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmContact.home.createLabel"> Create a new Crm Contact </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="crmContacts?.length === 0">
+    <span jhiTranslate="scibscrmApp.crmContact.home.notFound">No Crm Contacts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="crmContacts && crmContacts.length > 0">
+    <table class="table" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.lastName">Last Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.firstName">First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emailAddress">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.emailAddress">Email Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="jobTitle">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.jobTitle">Job Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contactJob">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.contactJob">Contact Job</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="businessPhone">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.businessPhone">Business Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="homePhone">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.homePhone">Home Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mobilePhone">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.mobilePhone">Mobile Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="faxNumber">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.faxNumber">Fax Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="addresse">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.addresse">Addresse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="naissanceDate">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.naissanceDate">Naissance Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.photo">Photo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wilaya">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.wilaya">Wilaya</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="daira">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.daira">Daira</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codePostal">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.codePostal">Code Postal</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commune">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.commune">Commune</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pays">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.pays">Pays</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="webPage">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.webPage">Web Page</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="aboutSource">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.aboutSource">About Source</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="notes">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.notes">Notes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdTime">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.createdTime">Created Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastUpdate">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.lastUpdate">Last Update</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contacttype.contactType">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.contacttype">Contacttype</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="crmContactSource.contactSource">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.crmContactSource">Crm Contact Source</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="responsable.employeeName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.responsable">Responsable</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="societe.company">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmContact.societe">Societe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crmContact of crmContacts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/crm-contact', crmContact.id, 'view']">{{ crmContact.id }}</a>
+          </td>
+          <td>{{ crmContact.lastName }}</td>
+          <td>{{ crmContact.firstName }}</td>
+          <td>{{ crmContact.emailAddress }}</td>
+          <td>{{ crmContact.jobTitle }}</td>
+          <td>{{ crmContact.contactJob }}</td>
+          <td>{{ crmContact.businessPhone }}</td>
+          <td>{{ crmContact.homePhone }}</td>
+          <td>{{ crmContact.mobilePhone }}</td>
+          <td>{{ crmContact.faxNumber }}</td>
+          <td>{{ crmContact.addresse }}</td>
+          <td>{{ crmContact.naissanceDate | formatMediumDate }}</td>
+          <td>
+            <a *ngIf="crmContact.photo" (click)="openFile(crmContact.photo, crmContact.photoContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            <span *ngIf="crmContact.photo">{{ crmContact.photoContentType }}, {{ byteSize(crmContact.photo) }}</span>
+          </td>
+          <td>{{ crmContact.wilaya }}</td>
+          <td>{{ crmContact.daira }}</td>
+          <td>{{ crmContact.codePostal }}</td>
+          <td>{{ crmContact.commune }}</td>
+          <td>{{ crmContact.pays }}</td>
+          <td>{{ crmContact.webPage }}</td>
+          <td>{{ crmContact.aboutSource }}</td>
+          <td>{{ crmContact.notes }}</td>
+          <td>{{ crmContact.createdTime | formatMediumDatetime }}</td>
+          <td>{{ crmContact.lastUpdate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="crmContact.contacttype">
+              <a [routerLink]="['/crm-contact-type', crmContact.contacttype.id, 'view']">{{ crmContact.contacttype.contactType }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmContact.crmContactSource">
+              <a [routerLink]="['/crm-c-ontact-source', crmContact.crmContactSource.id, 'view']">{{
+                crmContact.crmContactSource.contactSource
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmContact.responsable">
+              <a [routerLink]="['/employee', crmContact.responsable.id, 'view']">{{ crmContact.responsable.employeeName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmContact.societe">
+              <a [routerLink]="['/customer', crmContact.societe.id, 'view']">{{ crmContact.societe.company }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/activite']"
+                [queryParams]="{ 'filter[crmContactId.in]': crmContact.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmContact.activite' | translate) }"
+                  >Show Activite</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/crm-document']"
+                [queryParams]="{ 'filter[crmContactId.in]': crmContact.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmContact.crmDocument' | translate) }"
+                  >Show Crm Document</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/transaction-crm']"
+                [queryParams]="{ 'filter[crmContactId.in]': crmContact.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmContact.transactionCRM' | translate) }"
+                  >Show Transaction CRM</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/customer']"
+                [queryParams]="{ 'filter[crmContactId.in]': crmContact.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmContact.customer' | translate) }"
+                  >Show Customer</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/crm-contact', crmContact.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/crm-contact', crmContact.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(crmContact)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="crmContacts && crmContacts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

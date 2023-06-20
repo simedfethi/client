@@ -1,0 +1,28 @@
+{
+  "scibscrmApp": {
+    "markStHistory": {
+      "home": {
+        "title": "MarkStHistories",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mark St History",
+        "createOrEditLabel": "Créer ou éditer un Mark St History",
+        "notFound": "Aucun Mark St History trouvé"
+      },
+      "created": "Un nouveau Mark St History a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mark St History avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mark St History avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Mark St History {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mark St History"
+      },
+      "id": "ID",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "createdby": "Createdby",
+      "transactionCRM": "Transaction CRM",
+      "trEtape": "Tr Etape"
+    }
+  }
+}

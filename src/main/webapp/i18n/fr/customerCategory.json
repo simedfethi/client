@@ -1,0 +1,25 @@
+{
+  "scibscrmApp": {
+    "customerCategory": {
+      "home": {
+        "title": "CustomerCategories",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Customer Category",
+        "createOrEditLabel": "Créer ou éditer un Customer Category",
+        "notFound": "Aucun Customer Category trouvé"
+      },
+      "created": "Un nouveau Customer Category a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Customer Category avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Customer Category avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Customer Category {{ id }} ?"
+      },
+      "detail": {
+        "title": "Customer Category"
+      },
+      "id": "ID",
+      "catCode": "Cat Code",
+      "catName": "Cat Name"
+    }
+  }
+}

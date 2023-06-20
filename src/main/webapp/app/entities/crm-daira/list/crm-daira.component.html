@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="CrmDairaHeading">
+    <span jhiTranslate="scibscrmApp.crmDaira.home.title">Crm Dairas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmDaira.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-crm-daira"
+        [routerLink]="['/crm-daira/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmDaira.home.createLabel"> Create a new Crm Daira </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="crmDairas?.length === 0">
+    <span jhiTranslate="scibscrmApp.crmDaira.home.notFound">No Crm Dairas found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="crmDairas && crmDairas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dairaName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDaira.dairaName">Daira Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="crmWilaya.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDaira.crmWilaya">Crm Wilaya</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crmDaira of crmDairas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/crm-daira', crmDaira.id, 'view']">{{ crmDaira.id }}</a>
+          </td>
+          <td>{{ crmDaira.dairaName }}</td>
+          <td>
+            <div *ngIf="crmDaira.crmWilaya">
+              <a [routerLink]="['/crm-wilaya', crmDaira.crmWilaya.id, 'view']">{{ crmDaira.crmWilaya.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/crm-commune']"
+                [queryParams]="{ 'filter[crmDairaId.in]': crmDaira.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmDaira.crmCommune' | translate) }"
+                  >Show Crm Commune</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/crm-daira', crmDaira.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/crm-daira', crmDaira.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(crmDaira)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="crmDairas && crmDairas.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+import { concatMap, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+
+// Define your backend URLs
+const saveCustomerUrl = 'https://backend.com/saveCustomer';
+const saveOrderUrl = 'https://backend.com/saveOrder';
+const saveOrderLineUrl = 'https://backend.com/saveOrderLine';
+
+// Inject the HttpClient into your component or service constructor
+constructor(private http: HttpClient) { }
+
+// Call this method to start the sequence of requests
+saveCustomerOrderAndLine(customerData, orderData, orderLineData) {
+  this.http.post(saveCustomerUrl, customerData).pipe(
+    tap(customerResult => {
+      // Extract any necessary information from the customer result
+      orderData.customerId = customerResult.id;
+    }),
+    concatMap(() => this.http.post(saveOrderUrl, orderData)),
+    tap(orderResult => {
+      // Extract any necessary information from the order result
+      orderLineData.orderId = orderResult.id;
+    }),
+    concatMap(() => this.http.post(saveOrderLineUrl, orderLineData))
+  ).subscribe(orderLineResult => {
+    // Do something with the final result
+  });
+}
+
+
+
+
+// fork join example
+
+
+import { forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+// Inject the HttpClient into your component or service constructor
+constructor(private http: HttpClient) { }
+
+// Call this method to start the sequence of requests
+fetchDataFromApis() {
+  const apiUrl1 = 'https://api.example.com/data1';
+  const apiUrl2 = 'https://api.example.com/data2';
+
+  forkJoin([
+    this.http.get(apiUrl1),
+    this.http.get(apiUrl2)
+  ]).subscribe(
+    results => {
+      // Combine the results from both requests
+      const combinedResult = {
+        data1: results[0],
+        data2: results[1]
+      };
+      // Handle the final result here
+      console.log(combinedResult);
+    },
+    error => {
+      // Handle errors that occur during the requests here
+      console.error(error);
+    }
+  );
+}
+
+
+
+// switch map with for join
+
+
+import { forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+
+// Inject the HttpClient into your component or service constructor
+constructor(private http: HttpClient) { }
+
+// Call this method to start the sequence of requests
+fetchDataFromApis() {
+  const apiUrl1 = 'https://api.example.com/data1';
+  const apiUrl2 = 'https://api.example.com/data2';
+  const apiUrl3 = 'https://api.example.com/data3';
+
+  forkJoin([
+    this.http.get(apiUrl1),
+    this.http.get(apiUrl2)
+  ]).pipe(
+    switchMap((results: any[]) => {
+      // Use the results from the first two requests to construct the URL for the third request
+      const apiUrl3WithParams = `${apiUrl3}?param1=${results[0].param1}&param2=${results[1].param2}`;
+      // Send the third request
+      return this.http.get(apiUrl3WithParams);
+    })
+  ).subscribe(
+    result => {
+      // Combine the results from all three requests
+      const combinedResult = {
+        data1: result[0],
+        data2: result[1],
+        data3: result[2]
+      };
+      // Handle the final result here
+      console.log(combinedResult);
+    },
+    error => {
+      // Handle errors that occur during the requests here
+      console.error(error);
+    }
+  );
+}
+
+// concat map chained post
+
+import { HttpClient } from '@angular/common/http';
+import { concatMap } from 'rxjs/operators';
+
+constructor(private http: HttpClient) { }
+
+createCustomerAndOrder() {
+  const customerData = { name: 'John Doe', email: 'johndoe@example.com' };
+  let customerId: string;
+  let orderId: string;
+
+  this.http.post('/api/customer', customerData).pipe(
+    concatMap((customerResponse: any) => {
+      customerId = customerResponse.id;
+      const orderData = { customerId: customerId, orderDate: new Date() };
+      return this.http.post('/api/order', orderData);
+    }),
+    concatMap((orderResponse: any) => {
+      orderId = orderResponse.id;
+      const orderLineData = { orderId: orderId, productId: '123', quantity: 2 };
+      return this.http.post('/api/order-line', orderLineData);
+    })
+  ).subscribe(
+    () => {
+      console.log('Customer, Order, and Order Line created successfully');
+    },
+    error => {
+      console.error('Error occurred while creating Customer, Order, and Order Line', error);
+    }
+  );
+}

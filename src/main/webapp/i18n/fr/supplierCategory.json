@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "supplierCategory": {
+      "home": {
+        "title": "SupplierCategories",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Supplier Category",
+        "createOrEditLabel": "Créer ou éditer un Supplier Category",
+        "notFound": "Aucun Supplier Category trouvé"
+      },
+      "created": "Un nouveau Supplier Category a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Supplier Category avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Supplier Category avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Supplier Category {{ id }} ?"
+      },
+      "detail": {
+        "title": "Supplier Category"
+      },
+      "id": "ID",
+      "spCategory": "Sp Category"
+    }
+  }
+}

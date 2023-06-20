@@ -1,0 +1,38 @@
+{
+  "scibscrmApp": {
+    "activite": {
+      "home": {
+        "title": "Activites",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Activite",
+        "createOrEditLabel": "Create or edit a Activite",
+        "notFound": "No Activites found"
+      },
+      "created": "A new Activite is created with identifier {{ param }}",
+      "updated": "A Activite is updated with identifier {{ param }}",
+      "deleted": "A Activite is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Activite {{ id }}?"
+      },
+      "detail": {
+        "title": "Activite"
+      },
+      "id": "ID",
+      "typeactivite": "Typeactivite",
+      "resume": "Resume",
+      "dateEcheance": "Date Echeance",
+      "heureActivite": "Heure Activite",
+      "importance": "Importance",
+      "note": "Note",
+      "activiteVu": "Activite Vu",
+      "activiteAcheve": "Activite Acheve",
+      "endTime": "End Time",
+      "activiteVuTime": "Activite Vu Time",
+      "client": "Client",
+      "crmContact": "Crm Contact",
+      "transactionCRM": "Transaction CRM",
+      "employee": "Employee",
+      "employeeInclus": "Employee Inclus"
+    }
+  }
+}

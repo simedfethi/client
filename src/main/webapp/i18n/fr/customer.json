@@ -1,0 +1,51 @@
+{
+  "scibscrmApp": {
+    "customer": {
+      "home": {
+        "title": "Liste des Clients",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Client",
+        "createOrEditLabel": "Créer ou éditer un Client",
+        "notFound": "Aucun Client trouvé"
+      },
+      "created": "Un nouveau Client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Client avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Client {{ id }} ?"
+      },
+      "detail": {
+        "title": "Fiche Client"
+      },
+      "id": "ID",
+      "customerType": "Client Type",
+      "company": "Raison Sociale",
+      "emailAddress": "Email",
+      "businessPhone": "Téléphone",
+      "mobilePhone": "Mobile",
+      "faxNumber": "Fax",
+      "caAnnual": "Chiffre d'affaire",
+      "addresse": "Adresse",
+      "wilaya": "Wilaya",
+      "daira": "Daira",
+      "codePostal": "Code Postal",
+      "commune": "Commune",
+      "webPage": "Site Web",
+      "notes": "Notes",
+      "attachments": "Piece jointe",
+      "aboutSource": "A propos de la source",
+      "dejaClient": "Deja Client",
+      "createdTime": "Crée le",
+      "lastUpdate": "derniere modification",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "logo": "Logo",
+      "commercial": "Commercial",
+      "customerSource": "Source",
+      "nombreEmployee": "Nombre Employés",
+      "categorie": "Categorie",
+      "caMonnaie": "Monnaie",
+      "crmContact": "Crm Contact"
+    }
+  }
+}

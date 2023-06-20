@@ -1,0 +1,95 @@
+
+  <div class="navbar-search flex-fill position-relative mt-2 mt-lg-0 mx-lg-3">
+    <div class="form-control-feedback form-control-feedback-start flex-grow-1" data-color-theme="white">
+      <input
+        #search
+        [(ngModel)]="searchTerm"
+        type="text"
+        class="form-control bg-transparent rounded-pill"
+        placeholder="Rechercher partout"
+        data-bs-toggle="dropdown">
+      <div class="form-control-feedback-icon">
+        <i class="ph-magnifying-glass"></i>
+      </div>
+      <div class="dropdown-menu w-100" data-color-theme="light">
+
+
+        <div class="dropdown-menu-scrollable-lg">
+
+          <div class="dropdown-header" *ngIf="searchResult.customerList.length>0">
+            Clients
+           </div>
+          <div *ngFor="let item of searchResult.customerList; index as i; ">
+            <div class="dropdown-item cursor-pointer">
+
+              <div class="d-flex flex-column flex-grow-1">
+                <div class="fw-semibold">
+                  <a [routerLink]="['/customer', item.id, 'view']">{{item.company}}</a>
+                </div>
+                <span class="fs-sm text-muted">{{item.wilaya}} </span>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-item cursor-pointer" *ngIf="searchResult.customerList.length==0 && searchTerm.length>0">
+            <div class="d-flex flex-column flex-grow-1" (click)="navigateToRoute('/customer/new')">
+              <div class="fw-semibold">
+                Créer Client {{searchTerm}}
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+
+          <div class="dropdown-header" *ngIf="searchResult.crmContactList.length>0">
+            Contacts
+          </div>
+          <div *ngFor="let item of searchResult.crmContactList; index as i; ">
+            <div class="dropdown-item cursor-pointer">
+
+              <div class="d-flex flex-column flex-grow-1">
+                <div class="fw-semibold">
+                  <a [routerLink]="['/crm-contact', item.id, 'view']">{{item.firstName}} {{item.lastName}}</a>
+                </div>
+                <span class="fs-sm text-muted">tel: {{item.mobilePhone}} </span>
+              </div>
+            </div>
+
+          </div>
+          <div class="dropdown-item cursor-pointer" *ngIf="searchResult.crmContactList.length==0 && searchTerm.length>0">
+            <div class="d-flex flex-column flex-grow-1" (click)="navigateToRoute('/crm-contact/new')">
+              <div class="fw-semibold">
+                Créer Contact {{searchTerm}}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="dropdown-header" *ngIf="searchResult.transactionCRMList.length>0">
+            Transactions
+          </div>
+          <div *ngFor="let item of searchResult.transactionCRMList; index as i; ">
+            <div class="dropdown-item cursor-pointer">
+
+              <div class="d-flex flex-column flex-grow-1">
+                <div class="fw-semibold">
+                  <a [routerLink]="['/transaction-crm', item.id, 'edit']">{{item.reference}}</a>
+                </div>
+                <span class="fs-sm text-muted">tel: {{item.adresse}} </span>
+              </div>
+            </div>
+
+          </div>
+          <div class="dropdown-item cursor-pointer" *ngIf="searchResult.transactionCRMList.length==0 && searchTerm.length>0">
+          <div class="d-flex flex-column flex-grow-1" (click)="navigateToRoute('/transaction-crm/new')">
+            <div class="fw-semibold">
+              Créer Transaction {{searchTerm}}
+             </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+

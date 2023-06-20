@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transporter">
+      <h2 data-cy="transporterDetailsHeading"><span jhiTranslate="scibscrmApp.transporter.detail.title">Transporter</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transporter.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.nomprenom">Nomprenom</span></dt>
+        <dd>
+          <span>{{ transporter.nomprenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ transporter.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.permitdoc">Permitdoc</span></dt>
+        <dd>
+          <span>{{ transporter.permitdoc }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.expireDate">Expire Date</span></dt>
+        <dd>
+          <span>{{ transporter.expireDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ transporter.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.commune">Commune</span></dt>
+        <dd>
+          <span>{{ transporter.commune }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.daira">Daira</span></dt>
+        <dd>
+          <span>{{ transporter.daira }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transporter.wilaya">Wilaya</span></dt>
+        <dd>
+          <span>{{ transporter.wilaya }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transporter', transporter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

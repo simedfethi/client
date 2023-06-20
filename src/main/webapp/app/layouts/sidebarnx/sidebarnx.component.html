@@ -1,0 +1,112 @@
+<!-- Main sidebar -->
+
+  <!-- Sidebar content -->
+  <div class="sidebar-content">
+
+    <!-- Sidebar header -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-body d-flex justify-content-center">
+        <h5 class="sidebar-resize-hide flex-grow-1 my-auto">Menu</h5>
+
+        <div>
+          <button type="button" class="btn btn-flat-primary btn-icon btn-sm rounded-pill border-transparent sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
+            <i class="ph-arrows-left-right"></i>
+          </button>
+
+          <button type="button" class="btn btn-flat-primary btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-lg-none">
+            <i class="ph-x"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /sidebar header -->
+
+
+    <!-- Main navigation -->
+    <div class="sidebar-section">
+      <ul class="nav nav-sidebar" data-nav-type="collapsible">
+
+        <!-- Main -->
+        <li class="nav-item-header pt-0">
+          <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Accueil</div>
+          <i class="ph-dots-three sidebar-resize-show"></i>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <i class="ph-house"></i>
+            <span>
+							<span>Tableau de Bord</span>
+								</span>
+          </a>
+        </li>
+        <li class="nav-item nav-item-submenu">
+          <a href="#" class="nav-link">
+            <i class="ph-layout"></i>
+            <span>CRM</span>
+          </a>
+          <ul class="nav-group-sub collapse">
+            <li class="nav-item">
+              <a routerLink="transaction-crm" routerLinkActive="active" class="nav-link">Transactions</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="product" routerLinkActive="active" class="nav-link">Produits</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="product-category" routerLinkActive="active" class="nav-link">Catégorie Produit</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="productvariante" routerLinkActive="active" class="nav-link">Variantes Produits</a>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink="customer" routerLinkActive="active" class="nav-link">Clients</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="crm-contact" routerLinkActive="active" class="nav-link">Contacts</a>
+            </li>
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" routerLink="mark-compaign" class="nav-link">
+            <i class="ph-game-controller"></i>
+            <span>Marketing</span>
+          </a>
+
+        </li>
+        <li class="nav-item nav-item-submenu">
+          <a href="#" class="nav-link">
+            <i class="ph-swatches"></i>
+            <span>Entreprise</span>
+          </a>
+          <ul class="nav-group-sub collapse">
+            <li class="nav-item">
+              <a routerLink="company" routerLinkActive="active" class="nav-link">Entreprise</a>
+              <a routerLink="departement" routerLinkActive="active" class="nav-link">Départements</a>
+              <a routerLink="employee" routerLinkActive="active" class="nav-link">Employées</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-submenu">
+          <a href="#" class="nav-link">
+            <i class="ph-note-blank"></i>
+            <span>Paramétrage</span>
+          </a>
+          <ul class="nav-group-sub collapse">
+            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" routerLink="admin/user-management" routerLinkActive="active" class="nav-link">Utilisateurs</a>
+            <a routerLink="admin/metrics" routerLinkActive="active" class="nav-link">Métriques</a>
+
+          </ul>
+        </li>
+
+
+      </ul>
+    </div>
+    <!-- /main navigation -->
+
+
+
+  <!-- /sidebar content -->
+
+</div>
+<!-- /main sidebar -->

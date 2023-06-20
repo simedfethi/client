@@ -1,0 +1,25 @@
+{
+  "scibscrmApp": {
+    "deliveryTerm": {
+      "home": {
+        "title": "Delivery Terms",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Delivery Term",
+        "createOrEditLabel": "Create or edit a Delivery Term",
+        "notFound": "No Delivery Terms found"
+      },
+      "created": "A new Delivery Term is created with identifier {{ param }}",
+      "updated": "A Delivery Term is updated with identifier {{ param }}",
+      "deleted": "A Delivery Term is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Delivery Term {{ id }}?"
+      },
+      "detail": {
+        "title": "Delivery Term"
+      },
+      "id": "ID",
+      "delTerm": "Del Term",
+      "supplierOffer": "Supplier Offer"
+    }
+  }
+}

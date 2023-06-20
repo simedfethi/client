@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmCommune">
+      <h2 data-cy="crmCommuneDetailsHeading"><span jhiTranslate="scibscrmApp.crmCommune.detail.title">Crm Commune</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmCommune.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmCommune.communeName">Commune Name</span></dt>
+        <dd>
+          <span>{{ crmCommune.communeName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmCommune.crmDaira">Crm Daira</span></dt>
+        <dd>
+          <div *ngIf="crmCommune.crmDaira">
+            <a [routerLink]="['/crm-daira', crmCommune.crmDaira.id, 'view']">{{ crmCommune.crmDaira.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-commune', crmCommune.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

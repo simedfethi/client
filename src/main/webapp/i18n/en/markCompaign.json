@@ -1,0 +1,44 @@
+{
+  "scibscrmApp": {
+    "markCompaign": {
+      "home": {
+        "title": "Mark Compaigns",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mark Compaign",
+        "createOrEditLabel": "Create or edit a Mark Compaign",
+        "notFound": "No Mark Compaigns found"
+      },
+      "created": "A new Mark Compaign is created with identifier {{ param }}",
+      "updated": "A Mark Compaign is updated with identifier {{ param }}",
+      "deleted": "A Mark Compaign is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mark Compaign {{ id }}?"
+      },
+      "detail": {
+        "title": "Mark Compaign"
+      },
+      "id": "ID",
+      "subject": "Subject",
+      "compaigntype": "Compaigntype",
+      "attachement": "Attachement",
+      "linkParam": "Link Param",
+      "priorityM": "Priority M",
+      "currentAction": "Current Action",
+      "receipientTotal": "Receipient Total",
+      "receipientReceive": "Receipient Receive",
+      "receipientView": "Receipient View",
+      "receipientClick": "Receipient Click",
+      "sendTime": "Send Time",
+      "createdAt": "Created At",
+      "endAt": "End At",
+      "validationTime": "Validation Time",
+      "smsWelcome": "Sms Welcome",
+      "emailWelcome": "Email Welcome",
+      "templateContent": "Template Content",
+      "htmlContent": "Html Content",
+      "categorie": "Categorie",
+      "sender": "Sender",
+      "markSegment": "Mark Segment"
+    }
+  }
+}

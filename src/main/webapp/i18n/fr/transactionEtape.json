@@ -1,0 +1,27 @@
+{
+  "scibscrmApp": {
+    "transactionEtape": {
+      "home": {
+        "title": "TransactionEtapes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Transaction Etape",
+        "createOrEditLabel": "Créer ou éditer un Transaction Etape",
+        "notFound": "Aucun Transaction Etape trouvé"
+      },
+      "created": "Un nouveau Transaction Etape a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Transaction Etape avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Transaction Etape avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Transaction Etape {{ id }} ?"
+      },
+      "detail": {
+        "title": "Transaction Etape"
+      },
+      "id": "ID",
+      "teName": "Te Name",
+      "teDescription": "Te Description",
+      "tebgColor": "Tebg Color",
+      "teIcon": "Te Icon"
+    }
+  }
+}

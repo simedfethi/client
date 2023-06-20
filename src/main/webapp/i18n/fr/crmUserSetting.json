@@ -1,0 +1,26 @@
+{
+  "scibscrmApp": {
+    "crmUserSetting": {
+      "home": {
+        "title": "CrmUserSettings",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm User Setting",
+        "createOrEditLabel": "Créer ou éditer un Crm User Setting",
+        "notFound": "Aucun Crm User Setting trouvé"
+      },
+      "created": "Un nouveau Crm User Setting a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm User Setting avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm User Setting avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm User Setting {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm User Setting"
+      },
+      "id": "ID",
+      "stName": "St Name",
+      "stValue": "St Value",
+      "employee": "Employee"
+    }
+  }
+}

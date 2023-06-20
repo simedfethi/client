@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="emailTemplate">
+      <h2 data-cy="emailTemplateDetailsHeading"><span jhiTranslate="scibscrmApp.emailTemplate.detail.title">Email Template</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ emailTemplate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.templateName">Template Name</span></dt>
+        <dd>
+          <span>{{ emailTemplate.templateName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.emailSubject">Email Subject</span></dt>
+        <dd>
+          <span>{{ emailTemplate.emailSubject }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.templateContent">Template Content</span></dt>
+        <dd>
+          <span>{{ emailTemplate.templateContent }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.tempType">Temp Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.TemplateType.' + emailTemplate.tempType }}">{{ emailTemplate.tempType }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.htmlContent">Html Content</span></dt>
+        <dd>
+          <span>{{ emailTemplate.htmlContent }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.useCount">Use Count</span></dt>
+        <dd>
+          <span>{{ emailTemplate.useCount }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ emailTemplate.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.emailTemplate.attachments">Attachments</span></dt>
+        <dd>
+          <div *ngIf="emailTemplate.attachments">
+            <a (click)="openFile(emailTemplate.attachments, emailTemplate.attachmentsContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ emailTemplate.attachmentsContentType }}, {{ byteSize(emailTemplate.attachments) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/email-template', emailTemplate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+{
+  "scibscrmApp": {
+    "transactionCRM": {
+      "home": {
+        "title": "Transaction CRMS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transaction CRM",
+        "createOrEditLabel": "Create or edit a Transaction CRM",
+        "notFound": "No Transaction CRMS found"
+      },
+      "created": "A new Transaction CRM is created with identifier {{ param }}",
+      "updated": "A Transaction CRM is updated with identifier {{ param }}",
+      "deleted": "A Transaction CRM is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transaction CRM {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction CRM"
+      },
+      "id": "ID",
+      "reference": "Reference",
+      "montant": "Montant",
+      "dateFin": "Date Fin",
+      "transactionRecurrente": "Transaction Recurrente",
+      "intituleAffaire": "Intitule Affaire",
+      "creeLe": "Cree Le",
+      "dernierUpdate": "Dernier Update",
+      "telephone": "Telephone",
+      "source": "Source",
+      "adresse": "Adresse",
+      "notes": "Notes",
+      "locationUrl": "Location Url",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "trValidated": "Tr Validated",
+      "attachments": "Attachments",
+      "crmDocument": "Crm Document",
+      "trStatus": "Tr Status",
+      "monnaie": "Monnaie",
+      "trEtape": "Tr Etape",
+      "chargeAffaire": "Charge Affaire",
+      "client": "Client",
+      "crmContact": "Crm Contact",
+      "markStHistory": "Mark St History",
+      "supplierOffer": "Supplier Offer",
+      "activite": "Activite"
+    }
+  }
+}

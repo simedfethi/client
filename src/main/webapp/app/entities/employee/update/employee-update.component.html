@@ -1,0 +1,160 @@
+<div class="m-3">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-employee-heading" data-cy="EmployeeCreateUpdateHeading" jhiTranslate="scibscrmApp.employee.home.createOrEditLabel">
+        Create or edit a Employee
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.employeeName" for="field_employeeName">Employee Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="employeeName"
+            id="field_employeeName"
+            data-cy="employeeName"
+            formControlName="employeeName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.gender" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'scibscrmApp.Gender.null' | translate }}</option>
+            <option *ngFor="let gender of genderValues" [value]="gender">{{ 'scibscrmApp.Gender.' + gender | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.phone" for="field_phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.addressLine1" for="field_addressLine1">Address Line 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="addressLine1"
+            id="field_addressLine1"
+            data-cy="addressLine1"
+            formControlName="addressLine1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.emailAdress" for="field_emailAdress">Email Adress</label>
+          <input
+            type="text"
+            class="form-control"
+            name="emailAdress"
+            id="field_emailAdress"
+            data-cy="emailAdress"
+            formControlName="emailAdress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.utilisateur" for="field_utilisateur">Utilisateur</label>
+          <select
+            class="form-control"
+            id="field_utilisateur"
+            data-cy="utilisateur"
+            name="utilisateur"
+            formControlName="utilisateur"
+            [compareWith]="compareUser"
+          >
+            <option *ngIf="!editForm.get('utilisateur')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['utilisateur'])!.invalid && (editForm.get(['utilisateur'])!.dirty || editForm.get(['utilisateur'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['utilisateur'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.employee.departement" for="field_departement">Departement</label>
+          <select
+            class="form-control"
+            id="field_departement"
+            data-cy="departement"
+            name="departement"
+            formControlName="departement"
+            [compareWith]="compareDepartement"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="departementOption" *ngFor="let departementOption of departementsSharedCollection">
+              {{ departementOption.departmentName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.employee.crmUserSetting" for="field_crmUserSettings">Crm User Setting</label>
+          <select
+            class="form-control"
+            id="field_crmUserSettings"
+            data-cy="crmUserSetting"
+            multiple
+            name="crmUserSettings"
+            formControlName="crmUserSettings"
+            [compareWith]="compareCrmUserSetting"
+          >
+            <option [ngValue]="crmUserSettingOption" *ngFor="let crmUserSettingOption of crmUserSettingsSharedCollection">
+              {{ crmUserSettingOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.employee.crmPermission" for="field_crmPermissions">Crm Permission</label>
+          <select
+            class="form-control"
+            id="field_crmPermissions"
+            data-cy="crmPermission"
+            multiple
+            name="crmPermissions"
+            formControlName="crmPermissions"
+            [compareWith]="compareCrmPermission"
+          >
+            <option [ngValue]="crmPermissionOption" *ngFor="let crmPermissionOption of crmPermissionsSharedCollection">
+              {{ crmPermissionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<!-- Content area -->
+<div class="content">
+
+  <!-- Single mail -->
+  <div class="card h-100">
+
+    <!-- Action toolbar -->
+    <div class="card-body d-sm-flex align-items-sm-center flex-sm-wrap flex-grow-0">
+      <div class="btn-toolbar">
+        <button type="button" class="btn btn-primary me-3">
+          <i class="ph-paper-plane-tilt"></i>
+          <span class="d-none d-xl-inline-block ms-2" (click)="sendmail();">Envoyer</span>
+        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-light">
+            <i class="ph-check"></i>
+            <span class="d-none d-xl-inline-block ms-2">Sauvegarder</span>
+          </button>
+          <button type="button" class="btn btn-light">
+            <i class="ph-trash"></i>
+            <span class="d-none d-xl-inline-block ms-2">Enlever</span>
+          </button>
+
+        </div>
+      </div>
+
+      <div class="d-inline-flex align-items-center flex-wrap w-100 w-sm-auto mt-2 mt-sm-0 ms-sm-auto">
+        <div>12:49 pm</div>
+
+        <div class="ms-3">
+          <div class="btn-group">
+            <button type="button" class="btn btn-light">
+              <i class="ph-printer"></i>
+              <span class="d-none d-xl-inline-block ms-2">Print</span>
+            </button>
+            <button type="button" class="btn btn-light">
+              <i class="ph-share"></i>
+              <span class="d-none d-xl-inline-block ms-2">Share</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /action toolbar -->
+
+
+    <!-- Mail details -->
+    <div class="border-top py-0 flex-grow-0">
+      <div class="row mx-0 px-2">
+        <div class="col col-md-2 col-xl-1 d-none d-sm-block">
+          <div class="py-2 me-sm-3">To:</div>
+        </div>
+
+        <div class="col col-md-10 col-xl-11">
+          <div class="d-sm-flex flex-sm-wrap">
+            <input #emailto type="text" class="form-control flex-fill w-sm-auto py-2 px-0 order-0 shadow-none border-0 rounded-0" placeholder="Add recipients">
+            <div class="hstack gap-2 gap-sm-3 pt-sm-2 pb-2 ms-sm-auto">
+              <a href="#email_cc" data-bs-toggle="collapse">Copy</a>
+              <a href="#email_bcc" data-bs-toggle="collapse">Hidden copy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row collapse border-top mx-0 px-2" id="email_cc">
+        <div class="col col-md-2 col-xl-1 d-none d-sm-block">
+          <div class="py-2 me-sm-3">CC:</div>
+        </div>
+
+        <div class="col col-md-10 col-xl-11">
+          <input type="text" class="form-control flex-fill w-sm-auto py-2 px-0 order-0 shadow-none border-0 rounded-0" placeholder="Add CC recipients">
+        </div>
+      </div>
+
+      <div class="row collapse border-top mx-0 px-2" id="email_bcc">
+        <div class="col col-md-2 col-xl-1 d-none d-sm-block">
+          <div class="py-2 me-sm-3">BCC:</div>
+        </div>
+
+        <div class="col col-md-10 col-xl-11">
+          <input type="text" class="form-control flex-fill w-sm-auto py-2 px-0 order-0 shadow-none border-0 rounded-0" placeholder="Add BCC recipients">
+        </div>
+      </div>
+
+      <div class="row border-top mx-0 px-2">
+        <div class="col col-md-2 col-xl-1 d-none d-sm-block">
+          <div class="py-2 me-sm-3">Subject:</div>
+        </div>
+
+        <div class="col col-md-10 col-xl-11">
+          <input #subject type="text" class="form-control flex-fill w-sm-auto py-2 px-0 order-0 shadow-none border-0 rounded-0" placeholder="Add subject">
+        </div>
+      </div>
+
+      <div class="row border-top mx-0 px-2">
+        <div class="col col-md-2 col-xl-1 d-none d-sm-block">
+          <div class="py-2 me-sm-3">Attachments:</div>
+        </div>
+
+        <div class="col col-md-10 col-xl-11">
+          <div class="hstack gap-2 gap-sm-3 flex-wrap py-2">
+
+            <a class=" me-auto link-primary"   (click)="file.click()" >
+              <input #file id="files" type="file" hidden multiple (change)="UploadFiles($event)">
+              <i class="ph-paperclip me-1" ></i>
+              Attachement
+            </a>
+
+            <a href="#">
+              <i class="ph-google-logo me-1"></i>
+              <span class="d-none d-sm-inline-block">Google Drive</span>
+            </a>
+            <a href="#">
+              <i class="ph-cloud-arrow-up me-1"></i>
+              <span class="d-none d-sm-inline-block">Cloud drive</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+      <div *ngIf="currentFile" class="progress my-3">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+
+    </div>
+    <!-- /mail details -->
+
+
+    <!-- Mail container -->
+    <div class="border-top flex-grow-1">
+
+      <div id="editor-container" style="height: 800px"></div>
+
+    </div>
+
+    <!-- /mail container -->
+
+
+    <!-- Attachments -->
+    <div class="card-body border-top flex-grow-0">
+      <div *ngIf="uploadlist.length>0">
+      <h6 class="mb-2">{{uploadlist.length+' pieces jointes'}}</h6>
+      </div>
+      <div class="hstack gap-2 flex-wrap">
+
+           <div *ngFor="let file of uploadlist" class="d-flex">
+             <div class="border rounded p-2 mt-2">
+              <div class="d-inline-flex align-items-center fw-semibold my-1">
+                <i class="ph-file-png text-danger me-2"></i>
+                <a (click)="getimg(file.fileDownloadUri.toString())" >{{ file.fileName }} {{file.fileType}}</a>
+                <span class="fs-sm fw-normal text-muted ms-1">{{file.size}}</span>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+    </div>
+    <!-- /attachments -->
+
+  </div>
+  <!-- /single mail -->
+
+</div>
+<!-- /content area -->
+

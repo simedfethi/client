@@ -1,0 +1,26 @@
+{
+  "scibscrmApp": {
+    "crmDaira": {
+      "home": {
+        "title": "CrmDairas",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Daira",
+        "createOrEditLabel": "Créer ou éditer un Crm Daira",
+        "notFound": "Aucun Crm Daira trouvé"
+      },
+      "created": "Un nouveau Crm Daira a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Daira avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Daira avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Daira {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Daira"
+      },
+      "id": "ID",
+      "dairaName": "Daira Name",
+      "crmCommune": "Crm Commune",
+      "crmWilaya": "Crm Wilaya"
+    }
+  }
+}

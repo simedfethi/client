@@ -1,0 +1,44 @@
+{
+  "scibscrmApp": {
+    "markCompaign": {
+      "home": {
+        "title": "MarkCompaigns",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mark Compaign",
+        "createOrEditLabel": "Créer ou éditer un Mark Compaign",
+        "notFound": "Aucun Mark Compaign trouvé"
+      },
+      "created": "Un nouveau Mark Compaign a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mark Compaign avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mark Compaign avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Mark Compaign {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mark Compaign"
+      },
+      "id": "ID",
+      "subject": "Subject",
+      "compaigntype": "Compaigntype",
+      "attachement": "Attachement",
+      "linkParam": "Link Param",
+      "priorityM": "Priority M",
+      "currentAction": "Current Action",
+      "receipientTotal": "Receipient Total",
+      "receipientReceive": "Receipient Receive",
+      "receipientView": "Receipient View",
+      "receipientClick": "Receipient Click",
+      "sendTime": "Send Time",
+      "createdAt": "Created At",
+      "endAt": "End At",
+      "validationTime": "Validation Time",
+      "smsWelcome": "Sms Welcome",
+      "emailWelcome": "Email Welcome",
+      "templateContent": "Template Content",
+      "htmlContent": "Html Content",
+      "categorie": "Categorie",
+      "sender": "Sender",
+      "markSegment": "Mark Segment"
+    }
+  }
+}

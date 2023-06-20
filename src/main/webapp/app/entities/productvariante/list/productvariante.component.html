@@ -1,0 +1,167 @@
+<div>
+  <h2 id="page-heading" data-cy="ProductvarianteHeading">
+    <span jhiTranslate="scibscrmApp.productvariante.home.title">Productvariantes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.productvariante.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-productvariante"
+        [routerLink]="['/productvariante/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.productvariante.home.createLabel"> Create a new Productvariante </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="productvariantes?.length === 0">
+    <span jhiTranslate="scibscrmApp.productvariante.home.notFound">No Productvariantes found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="productvariantes && productvariantes.length > 0">
+    <table class="table table-hover" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="picture">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.picture">Picture</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codebarre">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.codebarre">Codebarre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productCode">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.productCode">Product Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salePrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.salePrice">Sale Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="uniteMesure">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.uniteMesure">Unite Mesure</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="stockDisponible">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.productvariante.stockDisponible">Stock Disponible</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let productvariante of productvariantes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/productvariante', productvariante.id, 'view']">{{ productvariante.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="productvariante.picture" (click)="openFile(productvariante.picture, productvariante.pictureContentType)">
+              <img
+                [src]="'data:' + productvariante.pictureContentType + ';base64,' + productvariante.picture"
+                style="max-height: 30px"
+                alt="productvariante image"
+              />
+            </a>
+            <span *ngIf="productvariante.picture">{{ productvariante.pictureContentType }}, {{ byteSize(productvariante.picture) }}</span>
+          </td>
+          <td>{{ productvariante.codebarre }}</td>
+          <td>{{ productvariante.productCode }}</td>
+          <td>{{ productvariante.salePrice }}</td>
+          <td>{{ productvariante.uniteMesure }}</td>
+          <td>{{ productvariante.stockDisponible }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/product']"
+                [queryParams]="{ 'filter[productvarianteId.in]': productvariante.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.productvariante.product' | translate) }"
+                  >Show Product</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/productvariante', productvariante.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/productvariante', productvariante.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(productvariante)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="productvariantes && productvariantes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "projectStatus": {
+      "home": {
+        "title": "ProjectStatuses",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Project Status",
+        "createOrEditLabel": "Créer ou éditer un Project Status",
+        "notFound": "Aucun Project Status trouvé"
+      },
+      "created": "Un nouveau Project Status a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Project Status avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Project Status avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Project Status {{ id }} ?"
+      },
+      "detail": {
+        "title": "Project Status"
+      },
+      "id": "ID",
+      "stName": "St Name"
+    }
+  }
+}

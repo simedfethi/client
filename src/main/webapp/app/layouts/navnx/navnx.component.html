@@ -1,0 +1,209 @@
+
+<!-- Main navbar -->
+<div class="navbar  navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10" [ngSwitch]="account !== null">
+  <div class="container-fluid">
+    <div class="d-flex d-lg-none me-2">
+      <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
+        <i class="ph-list"></i>
+      </button>
+    </div>
+
+    <div class="navbar-brand flex-1 flex-lg-0">
+      <a routerLink="/" class="d-inline-flex align-items-center">
+
+        <img src="content/images/logocrm.JPG" alt="" style="width: 150px; height:60px">
+
+      </a>
+    </div>
+
+    <ul class="nav flex-row">
+      <li class="nav-item d-lg-none">
+        <a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="collapse">
+          <i class="ph-magnifying-glass"></i>
+        </a>
+      </li>
+
+      <li class="nav-item nav-item-dropdown-lg dropdown">
+        <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown">
+          <i class="ph-squares-four"></i>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-scrollable-sm wmin-lg-600 p-0">
+          <div class="d-flex align-items-center border-bottom p-3">
+            <h6 class="mb-0">Applications</h6>
+            <a href="#" class="ms-auto">
+              Voir tout
+              <i class="ph-arrow-circle-right ms-1"></i>
+            </a>
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 g-0">
+            <div class="col">
+              <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom p-3">
+                <div>
+                  <img src="content/images/demo/logos/1.svg" class="h-40px mb-2" alt="">
+                  <div class="fw-semibold my-1">Tache et Projets</div>
+                  <div class="text-muted">gerer vos projets de maniere unifiée</div>
+                </div>
+              </button>
+            </div>
+
+            <div class="col">
+              <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-bottom p-3">
+                <div>
+                  <img src="content/images/demo/logos/2.svg" class="h-40px mb-2" alt="">
+                  <div class="fw-semibold my-1">Gestion des Stocks</div>
+                  <div class="text-muted">Stock, inventaire et Actifs</div>
+                </div>
+              </button>
+            </div>
+
+            <div class="col">
+              <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom border-bottom-sm-0 rounded-bottom-start p-3">
+                <div>
+                  <img src="content/images/demo/logos/3.svg" class="h-40px mb-2" alt="">
+                  <div class="fw-semibold my-1">Automation</div>
+                  <div class="text-muted">Automatisation des process</div>
+                </div>
+              </button>
+            </div>
+
+            <div class="col">
+              <button type="button" class="dropdown-item text-wrap h-100 align-items-start rounded-bottom-end p-3">
+                <div>
+                  <img src="content/images/demo/logos/4.svg" class="h-40px mb-2" alt="">
+                  <div class="fw-semibold my-1">Facturation</div>
+                  <div class="text-muted">Devis , Factures </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+        <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+          <i class="ph-chats"></i>
+          <span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">0</span>
+        </a>
+
+        <div class="dropdown-menu wmin-lg-400 p-0">
+          <div class="d-flex align-items-center p-3">
+            <h6 class="mb-0">Messages</h6>
+            <div class="ms-auto">
+              <a href="#" class="text-body rounded-pill">
+                <i class="ph-plus-circle"></i>
+              </a>
+              <a href="#search_messages" class="collapsed text-body rounded-pill ms-2" data-bs-toggle="collapse">
+                <i class="ph-magnifying-glass"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="collapse" id="search_messages">
+            <div class="px-3 mb-2">
+              <div class="form-control-feedback form-control-feedback-start">
+                <input type="text" class="form-control" placeholder="recherche messages">
+                <div class="form-control-feedback-icon">
+                  <i class="ph-magnifying-glass"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </li>
+    </ul>
+
+
+    <jhi-mainsearch class="navbar-collapse justify-content-center flex-lg-1 order-2 order-lg-1 collapse" id="navbar_search"></jhi-mainsearch>
+    <ul class="nav flex-row justify-content-end order-1 order-lg-2">
+      <li class="nav-item">
+        <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+          <i class="ph-bell"></i>
+          <span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">{{notificationNumber}}</span>
+        </a>
+      </li>
+
+      <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+      <a class="navbar-nav-link align-items-center" data-bs-toggle="dropdown">
+         <span>
+              <fa-icon icon="flag"></fa-icon>
+              <span class="d-none d-lg-inline-block mx-lg-2" jhiTranslate="global.menu.language">Language</span>
+            </span>
+      </a>
+        <div class="dropdown-menu dropdown-menu-start">
+          <ng-container *ngFor="let language of languages">
+            <a
+              class="dropdown-item"
+              [jhiActiveMenu]="language"
+              href="javascript:void(0);"
+              (click)="changeLanguage(language); collapseNavbar()"
+            >{{ language | findLanguageFromKey }}
+            </a>
+          </ng-container>
+
+        </div>
+      </li>
+      <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+        <a *ngIf="account !== null" href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+          <div class="status-indicator-container">
+            <img src="content/images/demo/users/face20.jpg" class="w-32px h-32px rounded-pill" alt="">
+            <span class="status-indicator bg-success"></span>
+          </div>
+
+          <span class="d-none d-lg-inline-block mx-lg-2">{{account!.firstName}}</span>
+        </a>
+        <a *ngIf="account === null" href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+          <span jhiTranslate="global.menu.account.main">Account</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a *ngSwitchCase="true"
+            routerLink="account/settings"
+            routerLinkActive="active"
+            class="dropdown-item"
+            data-cy="settings">
+            <i class="ph-user-circle me-2"></i>
+            <span jhiTranslate="global.menu.account.settings">Settings</span>
+          </a>
+          <a *ngSwitchCase="true"  class="dropdown-item"  routerLink="account/password"
+             routerLinkActive="active"
+             (click)="collapseNavbar()"
+             data-cy="passwordItem"
+          >
+            <i class="ph-currency-circle-dollar me-2"></i>
+            <span jhiTranslate="global.menu.account.password">Password</span>
+          </a>
+          <a *ngSwitchCase="true"  class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
+            <i class="ph-shopping-cart me-2"></i>
+            <span jhiTranslate="global.menu.account.logout">Sign out</span>
+          </a>
+          <a *ngSwitchCase="false"
+             (click)="login()"
+             class="dropdown-item"
+             id="login"
+             data-cy="login"
+          >
+            <i class="ph-envelope-open me-2"></i>
+            <span jhiTranslate="global.menu.account.login">Sign in</span>
+          </a>
+          <a *ngSwitchCase="false"
+             class="dropdown-item"
+             routerLink="account/register"
+             routerLinkActive="active"
+             id="register"
+             data-cy="register" >
+            <i class="ph-envelope-open me-2"></i>
+            <span jhiTranslate="global.menu.account.register">Register</span>
+          </a>
+
+
+
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- /main navbar -->

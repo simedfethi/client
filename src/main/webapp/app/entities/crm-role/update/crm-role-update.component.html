@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-crm-role-heading" data-cy="CrmRoleCreateUpdateHeading" jhiTranslate="scibscrmApp.crmRole.home.createOrEditLabel">
+        Create or edit a Crm Role
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmRole.roleName" for="field_roleName">Role Name</label>
+          <input type="text" class="form-control" name="roleName" id="field_roleName" data-cy="roleName" formControlName="roleName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmRole.roleCode" for="field_roleCode">Role Code</label>
+          <input type="number" class="form-control" name="roleCode" id="field_roleCode" data-cy="roleCode" formControlName="roleCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmRole.roleDescription" for="field_roleDescription">Role Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="roleDescription"
+            id="field_roleDescription"
+            data-cy="roleDescription"
+            formControlName="roleDescription"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

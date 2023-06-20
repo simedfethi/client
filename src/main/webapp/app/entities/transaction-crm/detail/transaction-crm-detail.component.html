@@ -1,0 +1,132 @@
+<div class="m-3">
+  <div class="col-lg-6">
+    <div *ngIf="transactionCRM">
+      <h2 data-cy="transactionCRMDetailsHeading"><span>Fiche Transaction</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+
+        <dt><span >Client</span></dt>
+        <dd>
+          <div *ngIf="transactionCRM.client">
+            <a [routerLink]="['/customer', transactionCRM.client.id, 'view']">{{ transactionCRM.client.company }}</a>
+          </div>
+        </dd>
+        <dt><span >Contacts</span></dt>
+        <dd>
+          <span *ngFor="let crmContact of transactionCRM.crmContacts; let last = last">
+            <a [routerLink]="['/crm-contact', crmContact.id, 'view']">{{ crmContact.firstName}} {{ crmContact.lastName}}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+
+
+        <dt><span>Reference</span></dt>
+        <dd>
+          <span>{{ transactionCRM.reference }}</span>
+        </dd>
+
+        <dt><span>Intitule Affaire</span></dt>
+        <dd>
+          <span>{{ transactionCRM.intituleAffaire }}</span>
+        </dd>
+
+        <dt><span >Telephone</span></dt>
+        <dd>
+          <span>{{ transactionCRM.telephone }}</span>
+        </dd>
+        <dt><span >Source</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.TransactionSource.' + transactionCRM.source }}">{{ transactionCRM.source }}</span>
+        </dd>
+        <dt><span >Adresse</span></dt>
+        <dd>
+          <span>{{ transactionCRM.adresse }}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+          <span>{{ transactionCRM.notes }}</span>
+        </dd>
+
+        <dt><span >Transaction validée</span></dt>
+        <dd>
+            <input
+            type="checkbox"
+            class="form-check"
+            name="trValidated"
+            id="field_trValidated"
+            [checked]="transactionCRM.trValidated"
+            (click)="$event.preventDefault()"
+          />
+        </dd>
+
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.monnaie">Monnaie</span></dt>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.creeLe">Cree Le</span></dt>
+        <dd>
+          <span>{{ transactionCRM.creeLe | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.dernierUpdate">Dernier Update</span></dt>
+        <dd>
+          <span>{{ transactionCRM.dernierUpdate | formatMediumDatetime }}</span>
+        </dd>
+
+        <dd>
+          <div *ngIf="transactionCRM.monnaie">
+            <a [routerLink]="['/monnaie', transactionCRM.monnaie.id, 'view']">{{ transactionCRM.monnaie.moneyName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.trEtape">Tr Etape</span></dt>
+        <dd>
+          <div *ngIf="transactionCRM.trEtape">
+            <a [routerLink]="['/transaction-etape', transactionCRM.trEtape.id, 'view']">{{ transactionCRM.trEtape.teName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.chargeAffaire">Charge Affaire</span></dt>
+        <dd>
+          <div *ngIf="transactionCRM.chargeAffaire">
+            <a [routerLink]="['/employee', transactionCRM.chargeAffaire.id, 'view']">{{ transactionCRM.chargeAffaire.employeeName }}</a>
+          </div>
+        </dd>
+         <dt><span jhiTranslate="scibscrmApp.transactionCRM.crmDocument">Crm Document</span></dt>
+        <dd>
+          <span *ngFor="let crmDocument of transactionCRM.crmDocuments; let last = last">
+            <a [routerLink]="['/crm-document', crmDocument.id, 'view']">{{ crmDocument.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.montant">Montant</span></dt>
+        <dd>
+          <span>{{ transactionCRM.montant }}</span>
+        </dd>
+
+        <dt><span >google maps</span></dt>
+        <dd>
+          <span>{{ transactionCRM.locationUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ transactionCRM.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionCRM.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ transactionCRM.longitude }}</span>
+        </dd>
+
+
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transaction-crm', transactionCRM.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

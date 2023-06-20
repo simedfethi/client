@@ -1,0 +1,51 @@
+{
+  "scibscrmApp": {
+    "customer": {
+      "home": {
+        "title": "Customers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Customer",
+        "createOrEditLabel": "Create or edit a Customer",
+        "notFound": "No Customers found"
+      },
+      "created": "A new Customer is created with identifier {{ param }}",
+      "updated": "A Customer is updated with identifier {{ param }}",
+      "deleted": "A Customer is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer"
+      },
+      "id": "ID",
+      "customerType": "Customer Type",
+      "company": "Company",
+      "emailAddress": "Email Address",
+      "businessPhone": "Business Phone",
+      "mobilePhone": "Mobile Phone",
+      "faxNumber": "Fax Number",
+      "caAnnual": "Ca Annual",
+      "addresse": "Addresse",
+      "wilaya": "Wilaya",
+      "daira": "Daira",
+      "codePostal": "Code Postal",
+      "commune": "Commune",
+      "webPage": "Web Page",
+      "notes": "Notes",
+      "attachments": "Attachments",
+      "aboutSource": "About Source",
+      "dejaClient": "Deja Client",
+      "createdTime": "Created Time",
+      "lastUpdate": "Last Update",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "logo": "Logo",
+      "commercial": "Commercial",
+      "customerSource": "Customer Source",
+      "nombreEmployee": "Nombre Employee",
+      "categorie": "Categorie",
+      "caMonnaie": "Ca Monnaie",
+      "crmContact": "Crm Contact"
+    }
+  }
+}

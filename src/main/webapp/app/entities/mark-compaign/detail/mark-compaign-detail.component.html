@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="markCompaign">
+      <h2 data-cy="markCompaignDetailsHeading"><span jhiTranslate="scibscrmApp.markCompaign.detail.title">Mark Compaign</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ markCompaign.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.subject">Subject</span></dt>
+        <dd>
+          <span>{{ markCompaign.subject }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.compaigntype">Compaigntype</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.CompaignType.' + markCompaign.compaigntype }}">{{ markCompaign.compaigntype }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.attachement">Attachement</span></dt>
+        <dd>
+          <span>{{ markCompaign.attachement }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.linkParam">Link Param</span></dt>
+        <dd>
+          <span>{{ markCompaign.linkParam }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.priorityM">Priority M</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.Compaignpriority.' + markCompaign.priorityM }}">{{ markCompaign.priorityM }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.currentAction">Current Action</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.CompaignAction.' + markCompaign.currentAction }}">{{ markCompaign.currentAction }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.receipientTotal">Receipient Total</span></dt>
+        <dd>
+          <span>{{ markCompaign.receipientTotal }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.receipientReceive">Receipient Receive</span></dt>
+        <dd>
+          <span>{{ markCompaign.receipientReceive }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.receipientView">Receipient View</span></dt>
+        <dd>
+          <span>{{ markCompaign.receipientView }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.receipientClick">Receipient Click</span></dt>
+        <dd>
+          <span>{{ markCompaign.receipientClick }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.sendTime">Send Time</span></dt>
+        <dd>
+          <span>{{ markCompaign.sendTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ markCompaign.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.endAt">End At</span></dt>
+        <dd>
+          <span>{{ markCompaign.endAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.sender">Sender</span></dt>
+        <dd>
+          <div *ngIf="markCompaign.sender">
+            <a [routerLink]="['/employee', markCompaign.sender.id, 'view']">{{ markCompaign.sender.employeeName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markCompaign.markSegment">Mark Segment</span></dt>
+        <dd>
+          <span *ngFor="let markSegment of markCompaign.markSegments; let last = last">
+            <a [routerLink]="['/mark-segment', markSegment.id, 'view']">{{ markSegment.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mark-compaign', markCompaign.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

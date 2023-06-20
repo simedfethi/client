@@ -1,0 +1,25 @@
+{
+  "scibscrmApp": {
+    "crmCommune": {
+      "home": {
+        "title": "CrmCommunes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Commune",
+        "createOrEditLabel": "Créer ou éditer un Crm Commune",
+        "notFound": "Aucun Crm Commune trouvé"
+      },
+      "created": "Un nouveau Crm Commune a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Commune avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Commune avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Commune {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Commune"
+      },
+      "id": "ID",
+      "communeName": "Commune Name",
+      "crmWilaya": "Crm Wilaya"
+    }
+  }
+}

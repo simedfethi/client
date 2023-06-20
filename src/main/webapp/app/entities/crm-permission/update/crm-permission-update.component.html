@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-crm-permission-heading"
+        data-cy="CrmPermissionCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.crmPermission.home.createOrEditLabel"
+      >
+        Create or edit a Crm Permission
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmPermission.pName" for="field_pName">P Name</label>
+          <input type="text" class="form-control" name="pName" id="field_pName" data-cy="pName" formControlName="pName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmPermission.pDescription" for="field_pDescription">P Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pDescription"
+            id="field_pDescription"
+            data-cy="pDescription"
+            formControlName="pDescription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.crmPermission.crmRole" for="field_crmRoles">Crm Role</label>
+          <select
+            class="form-control"
+            id="field_crmRoles"
+            data-cy="crmRole"
+            multiple
+            name="crmRoles"
+            formControlName="crmRoles"
+            [compareWith]="compareCrmRole"
+          >
+            <option [ngValue]="crmRoleOption" *ngFor="let crmRoleOption of crmRolesSharedCollection">{{ crmRoleOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

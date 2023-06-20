@@ -1,0 +1,151 @@
+<div class="m-3">
+  <div class="row">
+  <div class="col-lg-6">
+    <div *ngIf="crmContact">
+      <h2 data-cy="crmContactDetailsHeading"><span>Fiche Contact</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{crmContact.jobTitle}} </span> <span>{{ crmContact.firstName }}</span>
+        </dd>
+        <dt><span>Prénom</span></dt>
+        <dd>
+          <span>{{ crmContact.lastName }}</span>
+        </dd>
+
+        <dt><span>Adresse Email</span></dt>
+        <dd>
+          <span>{{ crmContact.emailAddress }}</span>
+        </dd>
+
+        <dt><span>Fonction</span></dt>
+        <dd>
+          <span>{{ crmContact.contactJob }}</span>
+        </dd>
+        <dt><span>Téléphone</span></dt>
+        <dd>
+          <span>{{ crmContact.businessPhone }}</span>
+        </dd>
+        <dt><span>Téléphone Personnel</span></dt>
+        <dd>
+          <span>{{ crmContact.homePhone }}</span>
+        </dd>
+        <dt><span>Mobile</span></dt>
+        <dd>
+          <span>{{ crmContact.mobilePhone }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ crmContact.faxNumber }}</span>
+        </dd>
+        <dt><span>Addresse</span></dt>
+        <dd>
+          <span>{{ crmContact.addresse }}</span>
+        </dd>
+        <dt><span>Date Naissance</span></dt>
+        <dd>
+          <span>{{ crmContact.naissanceDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmContact.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="crmContact.photo">
+            <a (click)="openFile(crmContact.photo, crmContact.photoContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ crmContact.photoContentType }}, {{ byteSize(crmContact.photo) }}
+          </div>
+        </dd>
+        <dt><span>Wilaya</span></dt>
+        <dd>
+          <span>{{ crmContact.wilaya }}</span>
+        </dd>
+        <dt><span>Daira</span></dt>
+        <dd>
+          <span>{{ crmContact.daira }}</span>
+        </dd>
+        <dt><span>Code Postal</span></dt>
+        <dd>
+          <span>{{ crmContact.codePostal }}</span>
+        </dd>
+        <dt><span>Commune</span></dt>
+        <dd>
+          <span>{{ crmContact.commune }}</span>
+        </dd>
+        <dt><span>Pays</span></dt>
+        <dd>
+          <span>{{ crmContact.pays }}</span>
+        </dd>
+        <dt><span>Site web</span></dt>
+        <dd>
+          <span>{{ crmContact.webPage }}</span>
+        </dd>
+
+        <dt><span jhiTranslate="scibscrmApp.crmContact.notes">Notes</span></dt>
+        <dd>
+          <span>{{ crmContact.notes }}</span>
+        </dd>
+        <dt><span>Crée le</span></dt>
+        <dd>
+          <span>{{ crmContact.createdTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Derniere modification</span></dt>
+        <dd>
+          <span>{{ crmContact.lastUpdate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Contact Type</span></dt>
+        <dd>
+          <div *ngIf="crmContact.contacttype">
+            <a [routerLink]="['/crm-contact-type', crmContact.contacttype.id, 'view']">{{ crmContact.contacttype.contactType }}</a>
+          </div>
+        </dd>
+        <dt><span>Source Contact</span></dt>
+        <dd>
+          <div *ngIf="crmContact.crmContactSource">
+            <a [routerLink]="['/crm-c-ontact-source', crmContact.crmContactSource.id, 'view']">{{
+              crmContact.crmContactSource.contactSource
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>A propos de la source</span></dt>
+        <dd>
+          <span>{{ crmContact.aboutSource }}</span>
+        </dd>
+
+        <dt><span>Commercial</span></dt>
+        <dd>
+          <div *ngIf="crmContact.responsable">
+            <a [routerLink]="['/employee', crmContact.responsable.id, 'view']">{{ crmContact.responsable.employeeName }}</a>
+          </div>
+        </dd>
+        <dt><span>Entreprise</span></dt>
+        <dd>
+          <div *ngIf="crmContact.societe">
+            <a [routerLink]="['/customer', crmContact.societe.id, 'view']">{{ crmContact.societe.company }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-contact', crmContact.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+
+    <div class="col-lg-6">
+      <div class="m-3">
+         <jhi-activite-player [customer]="crmContact"></jhi-activite-player>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+
+<button class="btn btn-secondary" (click)="searchByLocation()">By location</button>
+
+<div class="row">
+  <div class="col-lg-2">
+  <div *ngFor="let t of transactionlist"
+       class="m-1 p-1 rounded border border-primary"
+     (click)="pointCustomer($event,t)">
+      <h4>{{t.client?.company}}</h4>
+    <p>{{t.reference}}</p>
+      <p>{{t.adresse}}</p>
+    <p>{{t.telephone}}</p>
+
+  </div>
+  </div>
+  <div class="col-lg-10 p-1">
+    <div id="map" style="height: 600px"></div>
+  </div>
+</div>
+

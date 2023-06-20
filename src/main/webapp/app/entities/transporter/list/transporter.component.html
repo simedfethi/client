@@ -1,0 +1,157 @@
+<div>
+  <h2 id="page-heading" data-cy="TransporterHeading">
+    <span jhiTranslate="scibscrmApp.transporter.home.title">Transporters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.transporter.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-transporter"
+        [routerLink]="['/transporter/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.transporter.home.createLabel"> Create a new Transporter </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="transporters?.length === 0">
+    <span jhiTranslate="scibscrmApp.transporter.home.notFound">No Transporters found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="transporters && transporters.length > 0">
+    <table class="table table-hover" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomprenom">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.nomprenom">Nomprenom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="telephone">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.telephone">Telephone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="permitdoc">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.permitdoc">Permitdoc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="expireDate">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.expireDate">Expire Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="adresse">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.adresse">Adresse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commune">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.commune">Commune</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="daira">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.daira">Daira</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wilaya">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.transporter.wilaya">Wilaya</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transporter of transporters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/transporter', transporter.id, 'view']">{{ transporter.id }}</a>
+          </td>
+          <td>{{ transporter.nomprenom }}</td>
+          <td>{{ transporter.telephone }}</td>
+          <td>{{ transporter.permitdoc }}</td>
+          <td>{{ transporter.expireDate | formatMediumDate }}</td>
+          <td>{{ transporter.adresse }}</td>
+          <td>{{ transporter.commune }}</td>
+          <td>{{ transporter.daira }}</td>
+          <td>{{ transporter.wilaya }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/transporter', transporter.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/transporter', transporter.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(transporter)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transporters && transporters.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

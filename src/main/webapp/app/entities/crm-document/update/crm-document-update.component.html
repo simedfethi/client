@@ -1,0 +1,264 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-crm-document-heading"
+        data-cy="CrmDocumentCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.crmDocument.home.createOrEditLabel"
+      >
+        Create or edit a Crm Document
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.documentname" for="field_documentname">Documentname</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentname"
+            id="field_documentname"
+            data-cy="documentname"
+            formControlName="documentname"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.docnumber" for="field_docnumber">Docnumber</label>
+          <input type="text" class="form-control" name="docnumber" id="field_docnumber" data-cy="docnumber" formControlName="docnumber" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.docnotes" for="field_docnotes">Docnotes</label>
+          <textarea class="form-control" name="docnotes" id="field_docnotes" data-cy="docnotes" formControlName="docnotes"></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.cretedDate" for="field_cretedDate">Creted Date</label>
+          <div class="d-flex">
+            <input
+              id="field_cretedDate"
+              data-cy="cretedDate"
+              type="datetime-local"
+              class="form-control"
+              name="cretedDate"
+              formControlName="cretedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.updateDate" for="field_updateDate">Update Date</label>
+          <div class="d-flex">
+            <input
+              id="field_updateDate"
+              data-cy="updateDate"
+              type="datetime-local"
+              class="form-control"
+              name="updateDate"
+              formControlName="updateDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.totalPrice" for="field_totalPrice">Total Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalPrice"
+            id="field_totalPrice"
+            data-cy="totalPrice"
+            formControlName="totalPrice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.reductionPercent" for="field_reductionPercent"
+            >Reduction Percent</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="reductionPercent"
+            id="field_reductionPercent"
+            data-cy="reductionPercent"
+            formControlName="reductionPercent"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.reductionAmount" for="field_reductionAmount"
+            >Reduction Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="reductionAmount"
+            id="field_reductionAmount"
+            data-cy="reductionAmount"
+            formControlName="reductionAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.shipping" for="field_shipping">Shipping</label>
+          <input type="number" class="form-control" name="shipping" id="field_shipping" data-cy="shipping" formControlName="shipping" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.taxPrice" for="field_taxPrice">Tax Price</label>
+          <input type="number" class="form-control" name="taxPrice" id="field_taxPrice" data-cy="taxPrice" formControlName="taxPrice" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.netPrice" for="field_netPrice">Net Price</label>
+          <input type="number" class="form-control" name="netPrice" id="field_netPrice" data-cy="netPrice" formControlName="netPrice" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.transporteur" for="field_transporteur">Transporteur</label>
+          <select
+            class="form-control"
+            id="field_transporteur"
+            data-cy="transporteur"
+            name="transporteur"
+            formControlName="transporteur"
+            [compareWith]="compareTransporter"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transporterOption" *ngFor="let transporterOption of transportersSharedCollection">
+              {{ transporterOption.nomprenom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.transportunit" for="field_transportunit">Transportunit</label>
+          <select
+            class="form-control"
+            id="field_transportunit"
+            data-cy="transportunit"
+            name="transportunit"
+            formControlName="transportunit"
+            [compareWith]="compareTransportUnit"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transportUnitOption" *ngFor="let transportUnitOption of transportUnitsSharedCollection">
+              {{ transportUnitOption.tunitName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.crmdoctype" for="field_crmdoctype">Crmdoctype</label>
+          <select
+            class="form-control"
+            id="field_crmdoctype"
+            data-cy="crmdoctype"
+            name="crmdoctype"
+            formControlName="crmdoctype"
+            [compareWith]="compareCrmDocType"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="crmDocTypeOption" *ngFor="let crmDocTypeOption of crmDocTypesSharedCollection">
+              {{ crmDocTypeOption.cdtname }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.createdBy" for="field_createdBy">Created By</label>
+          <select
+            class="form-control"
+            id="field_createdBy"
+            data-cy="createdBy"
+            name="createdBy"
+            formControlName="createdBy"
+            [compareWith]="compareEmployee"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+              {{ employeeOption.employeeName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.customer" for="field_customer">Customer</label>
+          <select
+            class="form-control"
+            id="field_customer"
+            data-cy="customer"
+            name="customer"
+            formControlName="customer"
+            [compareWith]="compareCustomer"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="customerOption" *ngFor="let customerOption of customersSharedCollection">
+              {{ customerOption.company }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.crmContact" for="field_crmContact">Crm Contact</label>
+          <select
+            class="form-control"
+            id="field_crmContact"
+            data-cy="crmContact"
+            name="crmContact"
+            formControlName="crmContact"
+            [compareWith]="compareCrmContact"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="crmContactOption" *ngFor="let crmContactOption of crmContactsSharedCollection">
+              {{ crmContactOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.crmDocument.transactionCRM" for="field_transactionCRM">Transaction CRM</label>
+          <select
+            class="form-control"
+            id="field_transactionCRM"
+            data-cy="transactionCRM"
+            name="transactionCRM"
+            formControlName="transactionCRM"
+            [compareWith]="compareTransactionCRM"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transactionCRMOption" *ngFor="let transactionCRMOption of transactionCRMSSharedCollection">
+              {{ transactionCRMOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

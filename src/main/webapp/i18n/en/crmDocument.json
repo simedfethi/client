@@ -1,0 +1,42 @@
+{
+  "scibscrmApp": {
+    "crmDocument": {
+      "home": {
+        "title": "Crm Documents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Crm Document",
+        "createOrEditLabel": "Create or edit a Crm Document",
+        "notFound": "No Crm Documents found"
+      },
+      "created": "A new Crm Document is created with identifier {{ param }}",
+      "updated": "A Crm Document is updated with identifier {{ param }}",
+      "deleted": "A Crm Document is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Crm Document {{ id }}?"
+      },
+      "detail": {
+        "title": "Crm Document"
+      },
+      "id": "ID",
+      "documentname": "Documentname",
+      "docnumber": "Docnumber",
+      "docnotes": "Docnotes",
+      "cretedDate": "Creted Date",
+      "updateDate": "Update Date",
+      "totalPrice": "Total Price",
+      "reductionPercent": "Reduction Percent",
+      "reductionAmount": "Reduction Amount",
+      "shipping": "Shipping",
+      "taxPrice": "Tax Price",
+      "netPrice": "Net Price",
+      "crmDocumentLine": "Crm Document Line",
+      "transporteur": "Transporteur",
+      "transportunit": "Transportunit",
+      "crmdoctype": "Crmdoctype",
+      "createdBy": "Created By",
+      "customer": "Customer",
+      "crmContact": "Crm Contact",
+      "transactionCRM": "Transaction CRM"
+    }
+  }
+}

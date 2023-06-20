@@ -1,0 +1,96 @@
+<div class="m-3">
+  <div class="col-8">
+    <div *ngIf="company">
+      <h2 data-cy="companyDetailsHeading"><span >Fiche Entreprise</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ company.id }}</span>
+        </dd>
+        <dt><span>Raison Sociale</span></dt>
+        <dd>
+          <span>{{ company.company }}</span>
+        </dd>
+        <dt><span>Prénom</span></dt>
+        <dd>
+          <span>{{ company.lastName }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ company.firstName }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ company.emailAddress }}</span>
+        </dd>
+        <dt><span>Fonction</span></dt>
+        <dd>
+          <span>{{ company.jobTitle }}</span>
+        </dd>
+        <dt><span>Téléphone</span></dt>
+        <dd>
+          <span>{{ company.businessPhone }}</span>
+        </dd>
+
+        <dt><span>Mobile</span></dt>
+        <dd>
+          <span>{{ company.mobilePhone }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ company.faxNumber }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ company.address }}</span>
+        </dd>
+        <dt><span>Ville</span></dt>
+        <dd>
+          <span>{{ company.city }}</span>
+        </dd>
+        <dt><span>Wilaya</span></dt>
+        <dd>
+          <span>{{ company.stateProvince }}</span>
+        </dd>
+        <dt><span>Code Postal</span></dt>
+        <dd>
+          <span>{{ company.zipPostalCode }}</span>
+        </dd>
+        <dt><span>Pays</span></dt>
+        <dd>
+          <span>{{ company.countryRegion }}</span>
+        </dd>
+        <dt><span>Site web</span></dt>
+        <dd>
+          <span>{{ company.webPage }}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+          <span>{{ company.notes }}</span>
+        </dd>
+        <dt><span>Logo</span></dt>
+        <dd>
+          <div *ngIf="company.attachments">
+            <a (click)="openFile(company.attachments, company.attachmentsContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ company.attachmentsContentType }}, {{ byteSize(company.attachments) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/company', company.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "scibscrmApp": {
+    "transportUnit": {
+      "home": {
+        "title": "Transport Units",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transport Unit",
+        "createOrEditLabel": "Create or edit a Transport Unit",
+        "notFound": "No Transport Units found"
+      },
+      "created": "A new Transport Unit is created with identifier {{ param }}",
+      "updated": "A Transport Unit is updated with identifier {{ param }}",
+      "deleted": "A Transport Unit is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transport Unit {{ id }}?"
+      },
+      "detail": {
+        "title": "Transport Unit"
+      },
+      "id": "ID",
+      "tunitName": "Tunit Name",
+      "tunitmatricule": "Tunitmatricule",
+      "tunitmatriculeRem": "Tunitmatricule Rem",
+      "tunitmarque": "Tunitmarque",
+      "tunitmodel": "Tunitmodel",
+      "tunitcolor": "Tunitcolor",
+      "tcapacity": "Tcapacity"
+    }
+  }
+}

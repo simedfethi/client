@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "crmAvancement": {
+      "home": {
+        "title": "CrmAvancements",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Avancement",
+        "createOrEditLabel": "Créer ou éditer un Crm Avancement",
+        "notFound": "Aucun Crm Avancement trouvé"
+      },
+      "created": "Un nouveau Crm Avancement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Avancement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Avancement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Avancement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Avancement"
+      },
+      "id": "ID",
+      "avanName": "Avan Name"
+    }
+  }
+}

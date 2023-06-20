@@ -1,0 +1,257 @@
+<jhi-unlayer #layo [jsontemplate]="markCompaign?.templateContent"></jhi-unlayer>
+
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-mark-compaign-heading"
+        data-cy="MarkCompaignCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.markCompaign.home.createOrEditLabel"
+      >
+        Create or edit a Mark Compaign
+      </h2>
+      <button (click)="startCompaign()">Start compaign</button>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.subject" for="field_subject">Subject</label>
+          <input type="text" class="form-control" name="subject" id="field_subject" data-cy="subject" formControlName="subject" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.templateContent" for="field_templateContent"
+            >Template Content</label
+          >
+          <textarea
+            class="form-control"
+            name="templateContent"
+            id="field_templateContent"
+            data-cy="templateContent"
+            formControlName="templateContent"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.compaigntype" for="field_compaigntype">Compaigntype</label>
+          <select class="form-control" name="compaigntype" formControlName="compaigntype" id="field_compaigntype" data-cy="compaigntype">
+            <option [ngValue]="null">{{ 'scibscrmApp.CompaignType.null' | translate }}</option>
+            <option *ngFor="let compaignType of compaignTypeValues" [value]="compaignType">
+              {{ 'scibscrmApp.CompaignType.' + compaignType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.attachement" for="field_attachement">Attachement</label>
+          <input
+            type="text"
+            class="form-control"
+            name="attachement"
+            id="field_attachement"
+            data-cy="attachement"
+            formControlName="attachement"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.linkParam" for="field_linkParam">Link Param</label>
+          <input type="text" class="form-control" name="linkParam" id="field_linkParam" data-cy="linkParam" formControlName="linkParam" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.priorityM" for="field_priorityM">Priority M</label>
+          <select class="form-control" name="priorityM" formControlName="priorityM" id="field_priorityM" data-cy="priorityM">
+            <option [ngValue]="null">{{ 'scibscrmApp.Compaignpriority.null' | translate }}</option>
+            <option *ngFor="let compaignpriority of compaignpriorityValues" [value]="compaignpriority">
+              {{ 'scibscrmApp.Compaignpriority.' + compaignpriority | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.currentAction" for="field_currentAction">Current Action</label>
+          <select
+            class="form-control"
+            name="currentAction"
+            formControlName="currentAction"
+            id="field_currentAction"
+            data-cy="currentAction"
+          >
+            <option [ngValue]="null">{{ 'scibscrmApp.CompaignAction.null' | translate }}</option>
+            <option *ngFor="let compaignAction of compaignActionValues" [value]="compaignAction">
+              {{ 'scibscrmApp.CompaignAction.' + compaignAction | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.receipientTotal" for="field_receipientTotal"
+            >Receipient Total</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="receipientTotal"
+            id="field_receipientTotal"
+            data-cy="receipientTotal"
+            formControlName="receipientTotal"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.receipientReceive" for="field_receipientReceive"
+            >Receipient Receive</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="receipientReceive"
+            id="field_receipientReceive"
+            data-cy="receipientReceive"
+            formControlName="receipientReceive"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.receipientView" for="field_receipientView"
+            >Receipient View</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="receipientView"
+            id="field_receipientView"
+            data-cy="receipientView"
+            formControlName="receipientView"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.htmlContent" for="field_htmlContent">Html Content</label>
+          <textarea
+            class="form-control"
+            name="htmlContent"
+            id="field_htmlContent"
+            data-cy="htmlContent"
+            formControlName="htmlContent"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.receipientClick" for="field_receipientClick"
+            >Receipient Click</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="receipientClick"
+            id="field_receipientClick"
+            data-cy="receipientClick"
+            formControlName="receipientClick"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.sendTime" for="field_sendTime">Send Time</label>
+          <div class="d-flex">
+            <input
+              id="field_sendTime"
+              data-cy="sendTime"
+              type="datetime-local"
+              class="form-control"
+              name="sendTime"
+              formControlName="sendTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.createdAt" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.endAt" for="field_endAt">End At</label>
+          <div class="d-flex">
+            <input
+              id="field_endAt"
+              data-cy="endAt"
+              type="datetime-local"
+              class="form-control"
+              name="endAt"
+              formControlName="endAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.markCompaign.sender" for="field_sender">Sender</label>
+          <select
+            class="form-control"
+            id="field_sender"
+            data-cy="sender"
+            name="sender"
+            formControlName="sender"
+            [compareWith]="compareEmployee"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+              {{ employeeOption.employeeName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="scibscrmApp.markCompaign.markSegment" for="field_markSegments">Mark Segment</label>
+          <select
+            class="form-control"
+            id="field_markSegments"
+            data-cy="markSegment"
+            multiple
+            name="markSegments"
+            formControlName="markSegments"
+            [compareWith]="compareMarkSegment"
+          >
+            <option [ngValue]="markSegmentOption" *ngFor="let markSegmentOption of markSegmentsSharedCollection">
+              {{ markSegmentOption.segmentName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

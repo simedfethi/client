@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="supplierOffer">
+      <h2 data-cy="supplierOfferDetailsHeading"><span jhiTranslate="scibscrmApp.supplierOffer.detail.title">Supplier Offer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ supplierOffer.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.regularPrice">Regular Price</span></dt>
+        <dd>
+          <span>{{ supplierOffer.regularPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.discountPrice">Discount Price</span></dt>
+        <dd>
+          <span>{{ supplierOffer.discountPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.notes">Notes</span></dt>
+        <dd>
+          <span>{{ supplierOffer.notes }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.product">Product</span></dt>
+        <dd>
+          <div *ngIf="supplierOffer.product">
+            <a [routerLink]="['/product', supplierOffer.product.id, 'view']">{{ supplierOffer.product.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.uniteMesure">Unite Mesure</span></dt>
+        <dd>
+          <div *ngIf="supplierOffer.uniteMesure">
+            <a [routerLink]="['/unite-mesure', supplierOffer.uniteMesure.id, 'view']">{{ supplierOffer.uniteMesure.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.supplier">Supplier</span></dt>
+        <dd>
+          <div *ngIf="supplierOffer.supplier">
+            <a [routerLink]="['/supplier', supplierOffer.supplier.id, 'view']">{{ supplierOffer.supplier.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.transactionCRM">Transaction CRM</span></dt>
+        <dd>
+          <div *ngIf="supplierOffer.transactionCRM">
+            <a [routerLink]="['/transaction-crm', supplierOffer.transactionCRM.id, 'view']">{{ supplierOffer.transactionCRM.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.supplierOffer.deliveryTerm">Delivery Term</span></dt>
+        <dd>
+          <div *ngIf="supplierOffer.deliveryTerm">
+            <a [routerLink]="['/delivery-term', supplierOffer.deliveryTerm.id, 'view']">{{ supplierOffer.deliveryTerm.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/supplier-offer', supplierOffer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

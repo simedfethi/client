@@ -1,0 +1,34 @@
+{
+  "scibscrmApp": {
+    "employee": {
+      "home": {
+        "title": "Liste des Employés",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Employé",
+        "createOrEditLabel": "Créer ou éditer un Employé",
+        "notFound": "Aucun Employé trouvé"
+      },
+      "created": "Un nouveau Employé a été créé avec l'identifiant {{ param }}",
+      "updated": "Employé avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Employé avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer l'Employé {{ id }} ?"
+      },
+      "detail": {
+        "title": "Fiche Employé"
+      },
+      "id": "ID",
+      "employeeName": "Nom Prénom",
+      "gender": "Sexe",
+      "phone": "téléphone",
+      "addressLine1": "Adresse",
+      "emailAdress": "Email",
+      "utilisateur": "Utilisateur",
+      "departement": "Département",
+      "crmUserSetting": "Parametrage",
+      "crmPermission": "Permissions",
+      "activite": "Activite",
+      "activityEmp": "Activity Emp"
+    }
+  }
+}

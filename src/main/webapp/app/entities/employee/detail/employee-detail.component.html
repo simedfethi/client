@@ -1,0 +1,73 @@
+<div class="m-3">
+  <div class="col-8">
+    <div *ngIf="employee">
+      <h2 data-cy="employeeDetailsHeading"><span jhiTranslate="scibscrmApp.employee.detail.title">Employee</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+
+          <span>{{ employee.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.employeeName">Employee Name</span></dt>
+        <dd>
+          <span>{{ employee.employeeName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.gender">Gender</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.Gender.' + employee.gender }}">{{ employee.gender }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.phone">Phone</span></dt>
+        <dd>
+          <span>{{ employee.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.addressLine1">Address Line 1</span></dt>
+        <dd>
+          <span>{{ employee.addressLine1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.emailAdress">Email Adress</span></dt>
+        <dd>
+          <span>{{ employee.emailAdress }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.utilisateur">Utilisateur</span></dt>
+        <dd>
+          <span>{{ employee.utilisateur?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.departement">Departement</span></dt>
+        <dd>
+          <div *ngIf="employee.departement">
+            <a [routerLink]="['/departement', employee.departement.id, 'view']">{{ employee.departement.departmentName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.crmUserSetting">Crm User Setting</span></dt>
+        <dd>
+          <span *ngFor="let crmUserSetting of employee.crmUserSettings; let last = last">
+            <a [routerLink]="['/crm-user-setting', crmUserSetting.id, 'view']">{{ crmUserSetting.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.employee.crmPermission">Crm Permission</span></dt>
+        <dd>
+          <span *ngFor="let crmPermission of employee.crmPermissions; let last = last">
+            <a [routerLink]="['/crm-permission', crmPermission.id, 'view']">{{ crmPermission.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/employee', employee.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmDocumentLine">
+      <h2 data-cy="crmDocumentLineDetailsHeading">
+        <span jhiTranslate="scibscrmApp.crmDocumentLine.detail.title">Crm Document Line</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.lignePos">Ligne Pos</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.lignePos }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.itemRef">Item Ref</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.itemRef }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.itemDescription">Item Description</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.itemDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.qte">Qte</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.qte }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.qteExpedited">Qte Expedited</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.qteExpedited }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.unitPrice">Unit Price</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.unitPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.reductionPercent">Reduction Percent</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.reductionPercent }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.unitPriceNet">Unit Price Net</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.unitPriceNet }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.reductionAmount">Reduction Amount</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.reductionAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.taxPercent">Tax Percent</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.taxPercent }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.totalht">Totalht</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.totalht }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.totalttc">Totalttc</span></dt>
+        <dd>
+          <span>{{ crmDocumentLine.totalttc }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.unite">Unite</span></dt>
+        <dd>
+          <div *ngIf="crmDocumentLine.unite">
+            <a [routerLink]="['/unite-mesure', crmDocumentLine.unite.id, 'view']">{{ crmDocumentLine.unite.unitShortName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.sourceAprov">Source Aprov</span></dt>
+        <dd>
+          <div *ngIf="crmDocumentLine.sourceAprov">
+            <a [routerLink]="['/crm-concurrent', crmDocumentLine.sourceAprov.id, 'view']">{{ crmDocumentLine.sourceAprov.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.produit">Produit</span></dt>
+        <dd>
+          <div *ngIf="crmDocumentLine.produit">
+            <a [routerLink]="['/product', crmDocumentLine.produit.id, 'view']">{{ crmDocumentLine.produit.designation }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocumentLine.crmDocument">Crm Document</span></dt>
+        <dd>
+          <div *ngIf="crmDocumentLine.crmDocument">
+            <a [routerLink]="['/crm-document', crmDocumentLine.crmDocument.id, 'view']">{{ crmDocumentLine.crmDocument.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-document-line', crmDocumentLine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

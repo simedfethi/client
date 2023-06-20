@@ -1,0 +1,150 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-supplier-offer-heading"
+        data-cy="SupplierOfferCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.supplierOffer.home.createOrEditLabel"
+      >
+        Create or edit a Supplier Offer
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.regularPrice" for="field_regularPrice">Regular Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="regularPrice"
+            id="field_regularPrice"
+            data-cy="regularPrice"
+            formControlName="regularPrice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.discountPrice" for="field_discountPrice">Discount Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="discountPrice"
+            id="field_discountPrice"
+            data-cy="discountPrice"
+            formControlName="discountPrice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.notes" for="field_notes">Notes</label>
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.product" for="field_product">Product</label>
+          <select
+            class="form-control"
+            id="field_product"
+            data-cy="product"
+            name="product"
+            formControlName="product"
+            [compareWith]="compareProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="productOption" *ngFor="let productOption of productsSharedCollection">{{ productOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.uniteMesure" for="field_uniteMesure">Unite Mesure</label>
+          <select
+            class="form-control"
+            id="field_uniteMesure"
+            data-cy="uniteMesure"
+            name="uniteMesure"
+            formControlName="uniteMesure"
+            [compareWith]="compareUniteMesure"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="uniteMesureOption" *ngFor="let uniteMesureOption of uniteMesuresSharedCollection">
+              {{ uniteMesureOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.supplier" for="field_supplier">Supplier</label>
+          <select
+            class="form-control"
+            id="field_supplier"
+            data-cy="supplier"
+            name="supplier"
+            formControlName="supplier"
+            [compareWith]="compareSupplier"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="supplierOption" *ngFor="let supplierOption of suppliersSharedCollection">{{ supplierOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.transactionCRM" for="field_transactionCRM"
+            >Transaction CRM</label
+          >
+          <select
+            class="form-control"
+            id="field_transactionCRM"
+            data-cy="transactionCRM"
+            name="transactionCRM"
+            formControlName="transactionCRM"
+            [compareWith]="compareTransactionCRM"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transactionCRMOption" *ngFor="let transactionCRMOption of transactionCRMSSharedCollection">
+              {{ transactionCRMOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.supplierOffer.deliveryTerm" for="field_deliveryTerm">Delivery Term</label>
+          <select
+            class="form-control"
+            id="field_deliveryTerm"
+            data-cy="deliveryTerm"
+            name="deliveryTerm"
+            formControlName="deliveryTerm"
+            [compareWith]="compareDeliveryTerm"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="deliveryTermOption" *ngFor="let deliveryTermOption of deliveryTermsSharedCollection">
+              {{ deliveryTermOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

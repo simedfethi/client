@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transactionEtape">
+      <h2 data-cy="transactionEtapeDetailsHeading">
+        <span jhiTranslate="scibscrmApp.transactionEtape.detail.title">Transaction Etape</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transactionEtape.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionEtape.teName">Te Name</span></dt>
+        <dd>
+          <span>{{ transactionEtape.teName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionEtape.teDescription">Te Description</span></dt>
+        <dd>
+          <span>{{ transactionEtape.teDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionEtape.tebgColor">Tebg Color</span></dt>
+        <dd>
+          <span>{{ transactionEtape.tebgColor }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transactionEtape.teIcon">Te Icon</span></dt>
+        <dd>
+          <span>{{ transactionEtape.teIcon }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transaction-etape', transactionEtape.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

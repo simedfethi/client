@@ -1,0 +1,10 @@
+{
+  "scibscrmApp": {
+    "ImportanceCategory": {
+      "null": "",
+      "FAIBLE": "FAIBLE",
+      "MOYENNE": "MOYENNE",
+      "IMPORTANT": "IMPORTANT"
+    }
+  }
+}

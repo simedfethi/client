@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-transport-unit-heading"
+        data-cy="TransportUnitCreateUpdateHeading"
+        jhiTranslate="scibscrmApp.transportUnit.home.createOrEditLabel"
+      >
+        Create or edit a Transport Unit
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitName" for="field_tunitName">Tunit Name</label>
+          <input type="text" class="form-control" name="tunitName" id="field_tunitName" data-cy="tunitName" formControlName="tunitName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitmatricule" for="field_tunitmatricule"
+            >Tunitmatricule</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="tunitmatricule"
+            id="field_tunitmatricule"
+            data-cy="tunitmatricule"
+            formControlName="tunitmatricule"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitmatriculeRem" for="field_tunitmatriculeRem"
+            >Tunitmatricule Rem</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="tunitmatriculeRem"
+            id="field_tunitmatriculeRem"
+            data-cy="tunitmatriculeRem"
+            formControlName="tunitmatriculeRem"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitmarque" for="field_tunitmarque">Tunitmarque</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tunitmarque"
+            id="field_tunitmarque"
+            data-cy="tunitmarque"
+            formControlName="tunitmarque"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitmodel" for="field_tunitmodel">Tunitmodel</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tunitmodel"
+            id="field_tunitmodel"
+            data-cy="tunitmodel"
+            formControlName="tunitmodel"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tunitcolor" for="field_tunitcolor">Tunitcolor</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tunitcolor"
+            id="field_tunitcolor"
+            data-cy="tunitcolor"
+            formControlName="tunitcolor"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="scibscrmApp.transportUnit.tcapacity" for="field_tcapacity">Tcapacity</label>
+          <input type="text" class="form-control" name="tcapacity" id="field_tcapacity" data-cy="tcapacity" formControlName="tcapacity" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

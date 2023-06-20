@@ -1,0 +1,44 @@
+{
+  "scibscrmApp": {
+    "crmConcurrent": {
+      "home": {
+        "title": "CrmConcurrents",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Concurrent",
+        "createOrEditLabel": "Créer ou éditer un Crm Concurrent",
+        "notFound": "Aucun Crm Concurrent trouvé"
+      },
+      "created": "Un nouveau Crm Concurrent a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Concurrent avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Concurrent avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Concurrent {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Concurrent"
+      },
+      "id": "ID",
+      "customerType": "Customer Type",
+      "company": "Company",
+      "emailAddress": "Email Address",
+      "businessPhone": "Business Phone",
+      "mobilePhone": "Mobile Phone",
+      "faxNumber": "Fax Number",
+      "caAnnual": "Ca Annual",
+      "addresse": "Addresse",
+      "wilaya": "Wilaya",
+      "daira": "Daira",
+      "codePostal": "Code Postal",
+      "commune": "Commune",
+      "webPage": "Web Page",
+      "notes": "Notes",
+      "attachments": "Attachments",
+      "aboutSource": "About Source",
+      "createdTime": "Created Time",
+      "lastUpdate": "Last Update",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "logo": "Logo"
+    }
+  }
+}

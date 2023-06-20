@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="markSegment">
+      <h2 data-cy="markSegmentDetailsHeading"><span jhiTranslate="scibscrmApp.markSegment.detail.title">Mark Segment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ markSegment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markSegment.segmentName">Segment Name</span></dt>
+        <dd>
+          <span>{{ markSegment.segmentName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markSegment.customerFilter">Customer Filter</span></dt>
+        <dd>
+          <span>{{ markSegment.customerFilter }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markSegment.contactFilter">Contact Filter</span></dt>
+        <dd>
+          <span>{{ markSegment.contactFilter }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markSegment.destinataires">Destinataires</span></dt>
+        <dd>
+          <span>{{ markSegment.destinataires }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markSegment.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ markSegment.createdAt | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mark-segment', markSegment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

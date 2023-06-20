@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="markStHistory">
+      <h2 data-cy="markStHistoryDetailsHeading"><span jhiTranslate="scibscrmApp.markStHistory.detail.title">Mark St History</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ markStHistory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markStHistory.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ markStHistory.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markStHistory.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ markStHistory.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markStHistory.createdby">Createdby</span></dt>
+        <dd>
+          <div *ngIf="markStHistory.createdby">
+            <a [routerLink]="['/employee', markStHistory.createdby.id, 'view']">{{ markStHistory.createdby.employeeName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markStHistory.transactionCRM">Transaction CRM</span></dt>
+        <dd>
+          <div *ngIf="markStHistory.transactionCRM">
+            <a [routerLink]="['/transaction-crm', markStHistory.transactionCRM.id, 'view']">{{ markStHistory.transactionCRM.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.markStHistory.trEtape">Tr Etape</span></dt>
+        <dd>
+          <div *ngIf="markStHistory.trEtape">
+            <a [routerLink]="['/transaction-etape', markStHistory.trEtape.id, 'view']">{{ markStHistory.trEtape.teName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mark-st-history', markStHistory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

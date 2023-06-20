@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "affaireCategory": {
+      "home": {
+        "title": "AffaireCategories",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Affaire Category",
+        "createOrEditLabel": "Créer ou éditer un Affaire Category",
+        "notFound": "Aucun Affaire Category trouvé"
+      },
+      "created": "Un nouveau Affaire Category a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Affaire Category avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Affaire Category avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Affaire Category {{ id }} ?"
+      },
+      "detail": {
+        "title": "Affaire Category"
+      },
+      "id": "ID",
+      "categoryName": "Category Name"
+    }
+  }
+}

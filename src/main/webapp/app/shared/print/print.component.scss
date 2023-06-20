@@ -1,0 +1,22 @@
+#print-content {
+  width: 210mm; /* A4 width */
+  height: 297mm; /* A4 height */
+  margin: 0 auto; /* center content on page */
+  background-color: white; /* set background color of printed page */
+}
+
+@media print {
+  body {
+    margin: 0; /* remove page margins */
+  }
+  #print-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* hide overflowing content */
+  }
+}

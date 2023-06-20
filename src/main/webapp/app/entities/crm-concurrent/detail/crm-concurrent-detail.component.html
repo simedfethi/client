@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmConcurrent">
+      <h2 data-cy="crmConcurrentDetailsHeading"><span jhiTranslate="scibscrmApp.crmConcurrent.detail.title">Crm Concurrent</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.customerType">Customer Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'scibscrmApp.CustomerType.' + crmConcurrent.customerType }}">{{ crmConcurrent.customerType }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.company">Company</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.company }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.emailAddress">Email Address</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.emailAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.businessPhone">Business Phone</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.businessPhone }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.mobilePhone">Mobile Phone</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.mobilePhone }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.faxNumber">Fax Number</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.faxNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.caAnnual">Ca Annual</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.caAnnual }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.addresse">Addresse</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.addresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.wilaya">Wilaya</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.wilaya }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.daira">Daira</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.daira }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.codePostal">Code Postal</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.codePostal }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.commune">Commune</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.commune }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.webPage">Web Page</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.webPage }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.notes">Notes</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.notes }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.attachments">Attachments</span></dt>
+        <dd>
+          <div *ngIf="crmConcurrent.attachments">
+            <a (click)="openFile(crmConcurrent.attachments, crmConcurrent.attachmentsContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ crmConcurrent.attachmentsContentType }}, {{ byteSize(crmConcurrent.attachments) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.aboutSource">About Source</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.aboutSource }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.createdTime">Created Time</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.createdTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.lastUpdate">Last Update</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.lastUpdate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ crmConcurrent.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmConcurrent.logo">Logo</span></dt>
+        <dd>
+          <div *ngIf="crmConcurrent.logo">
+            <a (click)="openFile(crmConcurrent.logo, crmConcurrent.logoContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ crmConcurrent.logoContentType }}, {{ byteSize(crmConcurrent.logo) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-concurrent', crmConcurrent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

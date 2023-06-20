@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmPermission">
+      <h2 data-cy="crmPermissionDetailsHeading"><span jhiTranslate="scibscrmApp.crmPermission.detail.title">Crm Permission</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmPermission.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmPermission.pName">P Name</span></dt>
+        <dd>
+          <span>{{ crmPermission.pName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmPermission.pDescription">P Description</span></dt>
+        <dd>
+          <span>{{ crmPermission.pDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmPermission.crmRole">Crm Role</span></dt>
+        <dd>
+          <span *ngFor="let crmRole of crmPermission.crmRoles; let last = last">
+            <a [routerLink]="['/crm-role', crmRole.id, 'view']">{{ crmRole.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-permission', crmPermission.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

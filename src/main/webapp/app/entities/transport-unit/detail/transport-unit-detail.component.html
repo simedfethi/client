@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transportUnit">
+      <h2 data-cy="transportUnitDetailsHeading"><span jhiTranslate="scibscrmApp.transportUnit.detail.title">Transport Unit</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transportUnit.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitName">Tunit Name</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitName }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitmatricule">Tunitmatricule</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitmatricule }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitmatriculeRem">Tunitmatricule Rem</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitmatriculeRem }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitmarque">Tunitmarque</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitmarque }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitmodel">Tunitmodel</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitmodel }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tunitcolor">Tunitcolor</span></dt>
+        <dd>
+          <span>{{ transportUnit.tunitcolor }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.transportUnit.tcapacity">Tcapacity</span></dt>
+        <dd>
+          <span>{{ transportUnit.tcapacity }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transport-unit', transportUnit.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

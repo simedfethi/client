@@ -1,0 +1,46 @@
+{
+  "scibscrmApp": {
+    "transactionCRM": {
+      "home": {
+        "title": "TransactionCRMS",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Transaction CRM",
+        "createOrEditLabel": "Créer ou éditer un Transaction CRM",
+        "notFound": "Aucun Transaction CRM trouvé"
+      },
+      "created": "Un nouveau Transaction CRM a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Transaction CRM avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Transaction CRM avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Transaction CRM {{ id }} ?"
+      },
+      "detail": {
+        "title": "Transaction CRM"
+      },
+      "id": "ID",
+      "reference": "Reference",
+      "montant": "Montant",
+      "dateFin": "Date Fin",
+      "transactionRecurrente": "Transaction Recurrente",
+      "intituleAffaire": "Intitule Affaire",
+      "creeLe": "Cree Le",
+      "dernierUpdate": "Dernier Update",
+      "telephone": "Telephone",
+      "source": "Source",
+      "adresse": "Adresse",
+      "notes": "Notes",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "trValidated": "Tr Validated",
+      "monnaie": "Monnaie",
+      "trEtape": "Tr Etape",
+      "chargeAffaire": "Charge Affaire",
+      "client": "Client",
+      "crmContact": "Crm Contact",
+      "crmDocument": "Crm Document",
+      "markStHistory": "Mark St History",
+      "supplierOffer": "Supplier Offer",
+      "activite": "Activite"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+
+<!-- Notifications -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+  <div class="offcanvas-header py-0">
+    <h5 class="offcanvas-title py-3">Activité</h5>
+    <button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill" data-bs-dismiss="offcanvas">
+      <i class="ph-x"></i>
+    </button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <div class="bg-light fw-medium py-2 px-3">Nouvelles notifications</div>
+    <div class="p-3" *ngFor="let activite of activiteCollection" [ngClass]="{ 'acheve': activite.activiteAcheve===true }">
+      <div class="d-flex align-items-start">
+        <div class="me-1">
+          <div class="bg-warning bg-opacity-10 text-warning rounded-pill">
+
+            <i class="ph-phone p-2" *ngIf="activite.typeactivite === 'APPELER'"></i>
+            <i class="ph-envelope p-2" *ngIf="activite.typeactivite === 'EMAIL'"></i>
+            <i class="ph-check-square-offset p-2" *ngIf="activite.typeactivite === 'TACHE'"></i>
+
+          </div>
+        </div>
+
+        <div class="flex-fill" *ngIf="activite.typeactivite === 'APPELER'">
+         Vous avez un appel avec
+          <a href="#" class="fw-semibold">{{activite.crmContact?.firstName}} {{activite.crmContact?.lastName}}</a>
+          de l'entreprise <a href="#" class="fw-semibold">{{activite.client?.company}}</a> a propos de
+          {{activite.note}}
+          <a href="#" *ngIf="activite.transactionCRM !== null">Transaction N° {{activite.transactionCRM?.id}}</a>
+          <div class="fs-sm text-muted mt-1">{{activite.heureActivite | formatMediumDatetime}}</div>
+          <div *ngIf="activite.scheduling===true">
+            <input
+              [(ngModel)]="activite.heureActiviteISO"
+              data-cy="heureActivite"
+              type="datetime-local"
+
+              class="form-control"
+              name="heureActivite"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+            <a href="#" (click)="repousserActivite(activite,$event)" class="btn btn-success btn-sm m-1">
+              <i class="ph-checks ph-sm me-1"></i>
+              Repousser
+            </a>
+          </div>
+        </div>
+        <div class="flex-fill" *ngIf="activite.typeactivite === 'TACHE'">
+          {{activite.note}}
+          <a href="#" *ngIf="activite.transactionCRM !== null">Transaction N° {{activite.transactionCRM?.id}}</a>
+          <div class="fs-sm text-muted mt-1">{{activite.heureActivite | formatMediumDatetime}}</div>
+
+          <div *ngIf="activite.scheduling===true">
+            <input
+              [(ngModel)]="activite.heureActiviteISO"
+              data-cy="heureActivite"
+              type="datetime-local"
+
+              class="form-control"
+              name="heureActivite"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+            <a href="#" (click)="repousserActivite(activite,$event)" class="btn btn-success btn-sm m-1">
+              <i class="ph-checks ph-sm me-1"></i>
+              Repousser
+            </a>
+          </div>
+
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-flat-dark text-body btn-icon btn-sm border-transparent rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="ph-dots-three"></i>
+          </button>
+          <div class="dropdown-menu" style="">
+            <a *ngIf="activite.activiteAcheve===false" href="#" class="dropdown-item" (click)="marquerAchever(activite,$event)">Achevé(e)</a>
+            <a *ngIf="activite.activiteAcheve===true" href="#" class="dropdown-item" (click)="marquerNonAchever(activite,$event)">Non Achevé(e)</a>
+
+
+            <a href="#"  (click)="openRepousserActivite(activite,$event)" class="dropdown-item">Repousser</a>
+            <a *ngIf="activite.activiteVu===false" href="#" (click)="marquerLue(activite,$event)" class="dropdown-item">Marquer comme lue</a>
+
+            <a *ngIf="activite.activiteVu===true" href="#" (click)="marquerNonLue(activite,$event)" class="dropdown-item">Marquer comme non lue</a>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+<!-- /notifications -->
+

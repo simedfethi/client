@@ -1,0 +1,213 @@
+<div class="content container">
+<div class="card">
+  <div class="card-header">
+  <h2 id="page-heading" data-cy="MarkCompaignHeading">
+    <span>Démarrer les compagnes marketing</span>
+
+
+    <div class="d-flex justify-content-start">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.markCompaign.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-mark-compaign"
+        [routerLink]="['/mark-compaign/create']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.markCompaign.home.createLabel"> Create a new Mark Compaign </span>
+      </button>
+    </div>
+  </h2>
+  </div>
+  <div class="card-body">
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="markCompaigns?.length === 0">
+    <span jhiTranslate="scibscrmApp.markCompaign.home.notFound">No Mark Compaigns found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="markCompaigns && markCompaigns.length > 0">
+    <table class="table table-hover" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subject">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.subject">Subject</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="compaigntype">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.compaigntype">Compaigntype</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="attachement">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.attachement">Attachement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="linkParam">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.linkParam">Link Param</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="priorityM">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.priorityM">Priority M</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currentAction">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.currentAction">Current Action</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receipientTotal">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.receipientTotal">Receipient Total</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receipientReceive">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.receipientReceive">Receipient Receive</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receipientView">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.receipientView">Receipient View</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receipientClick">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.receipientClick">Receipient Click</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sendTime">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.sendTime">Send Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endAt">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.endAt">End At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sender.employeeName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.markCompaign.sender">Sender</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let markCompaign of markCompaigns; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/mark-compaign', markCompaign.id, 'view']">{{ markCompaign.id }}</a>
+          </td>
+          <td>{{ markCompaign.subject }}</td>
+          <td jhiTranslate="{{ 'scibscrmApp.CompaignType.' + markCompaign.compaigntype }}">{{ markCompaign.compaigntype }}</td>
+          <td>{{ markCompaign.attachement }}</td>
+          <td>{{ markCompaign.linkParam }}</td>
+          <td jhiTranslate="{{ 'scibscrmApp.Compaignpriority.' + markCompaign.priorityM }}">{{ markCompaign.priorityM }}</td>
+          <td jhiTranslate="{{ 'scibscrmApp.CompaignAction.' + markCompaign.currentAction }}">{{ markCompaign.currentAction }}</td>
+          <td>{{ markCompaign.receipientTotal }}</td>
+          <td>{{ markCompaign.receipientReceive }}</td>
+          <td>{{ markCompaign.receipientView }}</td>
+          <td>{{ markCompaign.receipientClick }}</td>
+          <td>{{ markCompaign.sendTime | formatMediumDatetime }}</td>
+          <td>{{ markCompaign.createdAt | formatMediumDatetime }}</td>
+          <td>{{ markCompaign.endAt | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="markCompaign.sender">
+              <a [routerLink]="['/employee', markCompaign.sender.id, 'view']">{{ markCompaign.sender.employeeName }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/mark-compaign', markCompaign.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" (click)="startCompaign(markCompaign)" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <span class="d-none d-md-inline">Démarrer</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/mark-compaign', markCompaign.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(markCompaign)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="markCompaigns && markCompaigns.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
+</div>
+</div>

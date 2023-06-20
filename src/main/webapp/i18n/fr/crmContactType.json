@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "crmContactType": {
+      "home": {
+        "title": "CrmContactTypes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Contact Type",
+        "createOrEditLabel": "Créer ou éditer un Crm Contact Type",
+        "notFound": "Aucun Crm Contact Type trouvé"
+      },
+      "created": "Un nouveau Crm Contact Type a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Contact Type avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Contact Type avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Contact Type {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Contact Type"
+      },
+      "id": "ID",
+      "contactType": "Contact Type"
+    }
+  }
+}

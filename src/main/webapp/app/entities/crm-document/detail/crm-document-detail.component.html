@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crmDocument">
+      <h2 data-cy="crmDocumentDetailsHeading"><span jhiTranslate="scibscrmApp.crmDocument.detail.title">Crm Document</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crmDocument.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.documentname">Documentname</span></dt>
+        <dd>
+          <span>{{ crmDocument.documentname }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.docnumber">Docnumber</span></dt>
+        <dd>
+          <span>{{ crmDocument.docnumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.docnotes">Docnotes</span></dt>
+        <dd>
+          <span>{{ crmDocument.docnotes }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.cretedDate">Creted Date</span></dt>
+        <dd>
+          <span>{{ crmDocument.cretedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ crmDocument.updateDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.totalPrice">Total Price</span></dt>
+        <dd>
+          <span>{{ crmDocument.totalPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.reductionPercent">Reduction Percent</span></dt>
+        <dd>
+          <span>{{ crmDocument.reductionPercent }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.reductionAmount">Reduction Amount</span></dt>
+        <dd>
+          <span>{{ crmDocument.reductionAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.shipping">Shipping</span></dt>
+        <dd>
+          <span>{{ crmDocument.shipping }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.taxPrice">Tax Price</span></dt>
+        <dd>
+          <span>{{ crmDocument.taxPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.netPrice">Net Price</span></dt>
+        <dd>
+          <span>{{ crmDocument.netPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.transporteur">Transporteur</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.transporteur">
+            <a [routerLink]="['/transporter', crmDocument.transporteur.id, 'view']">{{ crmDocument.transporteur.nomprenom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.transportunit">Transportunit</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.transportunit">
+            <a [routerLink]="['/transport-unit', crmDocument.transportunit.id, 'view']">{{ crmDocument.transportunit.tunitName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.crmdoctype">Crmdoctype</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.crmdoctype">
+            <a [routerLink]="['/crm-doc-type', crmDocument.crmdoctype.id, 'view']">{{ crmDocument.crmdoctype.cdtname }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.createdBy">Created By</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.createdBy">
+            <a [routerLink]="['/employee', crmDocument.createdBy.id, 'view']">{{ crmDocument.createdBy.employeeName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.customer">Customer</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.customer">
+            <a [routerLink]="['/customer', crmDocument.customer.id, 'view']">{{ crmDocument.customer.company }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.crmContact">Crm Contact</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.crmContact">
+            <a [routerLink]="['/crm-contact', crmDocument.crmContact.id, 'view']">{{ crmDocument.crmContact.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.crmDocument.transactionCRM">Transaction CRM</span></dt>
+        <dd>
+          <div *ngIf="crmDocument.transactionCRM">
+            <a [routerLink]="['/transaction-crm', crmDocument.transactionCRM.id, 'view']">{{ crmDocument.transactionCRM.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crm-document', crmDocument.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

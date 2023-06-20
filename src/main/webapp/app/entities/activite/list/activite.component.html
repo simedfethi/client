@@ -1,0 +1,215 @@
+<div>
+  <h2 id="page-heading" data-cy="ActiviteHeading">
+    <span jhiTranslate="scibscrmApp.activite.home.title">Activites</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.activite.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-activite"
+        [routerLink]="['/activite/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.activite.home.createLabel"> Create a new Activite </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="activites?.length === 0">
+    <span jhiTranslate="scibscrmApp.activite.home.notFound">No Activites found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="activites && activites.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="typeactivite">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.typeactivite">Typeactivite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="resume">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.resume">Resume</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateEcheance">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.dateEcheance">Date Echeance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="heureActivite">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.heureActivite">Heure Activite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="importance">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.importance">Importance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="note">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.note">Note</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activiteVu">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.activiteVu">Activite Vu</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activiteAcheve">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.activiteAcheve">Activite Acheve</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endTime">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.endTime">End Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activiteVuTime">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.activiteVuTime">Activite Vu Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="client.company">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.client">Client</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="crmContact.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.crmContact">Crm Contact</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transactionCRM.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.transactionCRM">Transaction CRM</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employee.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.activite.employee">Employee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activite of activites; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/activite', activite.id, 'view']">{{ activite.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'scibscrmApp.TypeActivite.' + activite.typeactivite }}">{{ activite.typeactivite }}</td>
+          <td>{{ activite.resume }}</td>
+          <td>{{ activite.dateEcheance | formatMediumDate }}</td>
+          <td>{{ activite.heureActivite | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'scibscrmApp.ImportanceCategory.' + activite.importance }}">{{ activite.importance }}</td>
+          <td>{{ activite.note }}</td>
+          <td>{{ activite.activiteVu }}</td>
+          <td>{{ activite.activiteAcheve }}</td>
+          <td>{{ activite.endTime | formatMediumDatetime }}</td>
+          <td>{{ activite.activiteVuTime | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="activite.client">
+              <a [routerLink]="['/customer', activite.client.id, 'view']">{{ activite.client.company }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="activite.crmContact">
+              <a [routerLink]="['/crm-contact', activite.crmContact.id, 'view']">{{ activite.crmContact.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="activite.transactionCRM">
+              <a [routerLink]="['/transaction-crm', activite.transactionCRM.id, 'view']">{{ activite.transactionCRM.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="activite.employee">
+              <a [routerLink]="['/employee', activite.employee.id, 'view']">{{ activite.employee.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/activite', activite.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/activite', activite.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(activite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="activites && activites.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

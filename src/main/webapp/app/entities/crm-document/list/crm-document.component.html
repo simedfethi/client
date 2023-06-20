@@ -1,0 +1,270 @@
+<div>
+  <h2 id="page-heading" data-cy="CrmDocumentHeading">
+    <span jhiTranslate="scibscrmApp.crmDocument.home.title">Crm Documents</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmDocument.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-crm-document"
+        [routerLink]="['/crm-document/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="scibscrmApp.crmDocument.home.createLabel"> Create a new Crm Document </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="crmDocuments?.length === 0">
+    <span jhiTranslate="scibscrmApp.crmDocument.home.notFound">No Crm Documents found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="crmDocuments && crmDocuments.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="documentname">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.documentname">Documentname</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="docnumber">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.docnumber">Docnumber</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="docnotes">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.docnotes">Docnotes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cretedDate">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.cretedDate">Creted Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="updateDate">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.updateDate">Update Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalPrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.totalPrice">Total Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reductionPercent">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.reductionPercent">Reduction Percent</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reductionAmount">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.reductionAmount">Reduction Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shipping">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.shipping">Shipping</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taxPrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.taxPrice">Tax Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="netPrice">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.netPrice">Net Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transporteur.nomprenom">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.transporteur">Transporteur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transportunit.tunitName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.transportunit">Transportunit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="crmdoctype.cdtname">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.crmdoctype">Crmdoctype</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdBy.employeeName">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.createdBy">Created By</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customer.company">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.customer">Customer</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="crmContact.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.crmContact">Crm Contact</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transactionCRM.id">
+            <div class="d-flex">
+              <span jhiTranslate="scibscrmApp.crmDocument.transactionCRM">Transaction CRM</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crmDocument of crmDocuments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/crm-document', crmDocument.id, 'view']">{{ crmDocument.id }}</a>
+          </td>
+          <td>{{ crmDocument.documentname }}</td>
+          <td>{{ crmDocument.docnumber }}</td>
+          <td>{{ crmDocument.docnotes }}</td>
+          <td>{{ crmDocument.cretedDate | formatMediumDatetime }}</td>
+          <td>{{ crmDocument.updateDate | formatMediumDatetime }}</td>
+          <td>{{ crmDocument.totalPrice }}</td>
+          <td>{{ crmDocument.reductionPercent }}</td>
+          <td>{{ crmDocument.reductionAmount }}</td>
+          <td>{{ crmDocument.shipping }}</td>
+          <td>{{ crmDocument.taxPrice }}</td>
+          <td>{{ crmDocument.netPrice }}</td>
+          <td>
+            <div *ngIf="crmDocument.transporteur">
+              <a [routerLink]="['/transporter', crmDocument.transporteur.id, 'view']">{{ crmDocument.transporteur.nomprenom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.transportunit">
+              <a [routerLink]="['/transport-unit', crmDocument.transportunit.id, 'view']">{{ crmDocument.transportunit.tunitName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.crmdoctype">
+              <a [routerLink]="['/crm-doc-type', crmDocument.crmdoctype.id, 'view']">{{ crmDocument.crmdoctype.cdtname }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.createdBy">
+              <a [routerLink]="['/employee', crmDocument.createdBy.id, 'view']">{{ crmDocument.createdBy.employeeName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.customer">
+              <a [routerLink]="['/customer', crmDocument.customer.id, 'view']">{{ crmDocument.customer.company }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.crmContact">
+              <a [routerLink]="['/crm-contact', crmDocument.crmContact.id, 'view']">{{ crmDocument.crmContact.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="crmDocument.transactionCRM">
+              <a [routerLink]="['/transaction-crm', crmDocument.transactionCRM.id, 'view']">{{ crmDocument.transactionCRM.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/crm-document-line']"
+                [queryParams]="{ 'filter[crmDocumentId.in]': crmDocument.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('scibscrmApp.crmDocument.crmDocumentLine' | translate) }"
+                  >Show Crm Document Line</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/crm-document', crmDocument.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/crm-document', crmDocument.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(crmDocument)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="crmDocuments && crmDocuments.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

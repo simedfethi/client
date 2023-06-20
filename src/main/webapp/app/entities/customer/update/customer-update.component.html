@@ -1,0 +1,475 @@
+<div class="m-3">
+<div *ngIf="customer">
+  <div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-bottom">
+      <div class="d-flex">
+        <h4 class="page-title mb-0">
+          Client-
+
+          <span class="fw-normal">{{ customer.company }}</span>
+        </h4>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div *ngIf="!customer">
+  <h2 id="jhi-customer-heading" data-cy="CustomerCreateUpdateHeading">
+    Create un Nouveau Client
+  </h2>
+</div>
+  <div class="row">
+      <div class="col-lg-6">
+
+
+          <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+
+            <div>
+              <jhi-alert-error></jhi-alert-error>
+
+              <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+                <label class="col-form-label-sm" jhiTranslate="global.field.id" for="field_id">ID</label>
+                <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+              </div>
+
+
+
+              <div class="row mb-3">
+                <label class="col-col-form-label-sm-sm"   for="field_company"> Raison Sociale </label>
+                <input type="text" class="form-control" name="company" id="field_company" data-cy="company" formControlName="company" />
+                <div *ngIf="editForm.get('company')!.invalid && (editForm.get('company')!.dirty || editForm.get('company')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('company')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+
+
+              <div class="row mb-3">
+                <label class="col-col-form-label-sm-sm"  for="field_businessPhone">Téléphone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="businessPhone"
+                  id="field_businessPhone"
+                  data-cy="businessPhone"
+                  formControlName="businessPhone"
+                />
+                <div
+                  *ngIf="
+              editForm.get('businessPhone')!.invalid && (editForm.get('businessPhone')!.dirty || editForm.get('businessPhone')!.touched)
+            "
+                >
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('businessPhone')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_emailAddress">Adresse Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="emailAddress"
+                  id="field_emailAddress"
+                  data-cy="emailAddress"
+                  formControlName="emailAddress"
+                />
+                <div
+                  *ngIf="editForm.get('emailAddress')!.invalid && (editForm.get('emailAddress')!.dirty || editForm.get('emailAddress')!.touched)"
+                >
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('emailAddress')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_mobilePhone">Téléphone Mobile</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mobilePhone"
+                  id="field_mobilePhone"
+                  data-cy="mobilePhone"
+                  formControlName="mobilePhone"
+                />
+                <div *ngIf="editForm.get('mobilePhone')!.invalid && (editForm.get('mobilePhone')!.dirty || editForm.get('mobilePhone')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('mobilePhone')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" for="field_faxNumber">Fax</label>
+                <input type="text" class="form-control" name="faxNumber" id="field_faxNumber" data-cy="faxNumber" formControlName="faxNumber" />
+                <div *ngIf="editForm.get('faxNumber')!.invalid && (editForm.get('faxNumber')!.dirty || editForm.get('faxNumber')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('faxNumber')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_addresse">Addresse</label>
+                <input type="text" class="form-control" name="addresse" id="field_addresse" data-cy="addresse" formControlName="addresse" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_wilaya">Wilaya</label>
+                <input type="text" class="form-control" name="wilaya" id="field_wilaya" data-cy="wilaya" formControlName="wilaya" />
+                <div *ngIf="editForm.get('wilaya')!.invalid && (editForm.get('wilaya')!.dirty || editForm.get('wilaya')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('wilaya')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_daira">Daira</label>
+                <input type="text" class="form-control" name="daira" id="field_daira" data-cy="daira" formControlName="daira" />
+                <div *ngIf="editForm.get('daira')!.invalid && (editForm.get('daira')!.dirty || editForm.get('daira')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('daira')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_codePostal">Code Postal</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="codePostal"
+                  id="field_codePostal"
+                  data-cy="codePostal"
+                  formControlName="codePostal"
+                />
+                <div *ngIf="editForm.get('codePostal')!.invalid && (editForm.get('codePostal')!.dirty || editForm.get('codePostal')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('codePostal')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 15 }"
+                  >
+                    This field cannot be longer than 15 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_commune">Commune</label>
+                <input type="text" class="form-control" name="commune" id="field_commune" data-cy="commune" formControlName="commune" />
+                <div *ngIf="editForm.get('commune')!.invalid && (editForm.get('commune')!.dirty || editForm.get('commune')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="editForm.get('commune')?.errors?.maxlength"
+                    jhiTranslate="entity.validation.maxlength"
+                    [translateValues]="{ max: 50 }"
+                  >
+                    This field cannot be longer than 50 characters.
+                  </small>
+                </div>
+              </div>
+
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_customerType">Forme Juridique</label>
+                <select class="form-control" name="customerType" formControlName="customerType" id="field_customerType" data-cy="customerType">
+                  <option [ngValue]="null">{{ 'scibscrmApp.CustomerType.null' | translate }}</option>
+                  <option *ngFor="let customerType of customerTypeValues" [value]="customerType">
+                    {{ 'scibscrmApp.CustomerType.' + customerType | translate }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_caAnnual">Chiffre d'affaire</label>
+                <input type="number" class="form-control" name="caAnnual" id="field_caAnnual" data-cy="caAnnual" formControlName="caAnnual" />
+              </div>
+
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.webPage" for="field_webPage">Web Page</label>
+                <input type="text" class="form-control" name="webPage" id="field_webPage" data-cy="webPage" formControlName="webPage" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.notes" for="field_notes">Notes</label>
+                <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.attachments" for="field_attachments">Attachments</label>
+                <div>
+                  <div *ngIf="editForm.get('attachments')!.value" class="form-text text-danger clearfix">
+                    <a
+                      class="pull-start"
+                      (click)="openFile(editForm.get('attachments')!.value!, editForm.get('attachmentsContentType')!.value!)"
+                      jhiTranslate="entity.action.open"
+                    >Open</a
+                    ><br />
+                    <span class="pull-start"
+                    >{{ editForm.get('attachmentsContentType')!.value }}, {{ byteSize(editForm.get('attachments')!.value!) }}</span
+                    >
+                    <button
+                      type="button"
+                      (click)="editForm.patchValue({ attachments: undefined, attachmentsContentType: undefined })"
+                      class="btn btn-secondary btn-xs pull-end"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                    </button>
+                  </div>
+                  <input
+                    type="file"
+                    id="file_attachments"
+                    data-cy="attachments"
+                    (change)="setFileData($event, 'attachments', false)"
+                    jhiTranslate="entity.action.addblob"
+                  />
+                </div>
+                <input
+                  type="hidden"
+                  class="form-control"
+                  name="attachments"
+                  id="field_attachments"
+                  data-cy="attachments"
+                  formControlName="attachments"
+                />
+                <input
+                  type="hidden"
+                  class="form-control"
+                  name="attachmentsContentType"
+                  id="field_attachmentsContentType"
+                  formControlName="attachmentsContentType"
+                />
+              </div>
+
+
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.dejaClient" for="field_dejaClient">Deja Client</label>
+                <input
+                  type="checkbox"
+                  class="form-check"
+                  name="dejaClient"
+                  id="field_dejaClient"
+                  data-cy="dejaClient"
+                  formControlName="dejaClient"
+                />
+              </div>
+
+
+
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.latitude" for="field_latitude">Latitude</label>
+                <input type="number" class="form-control" name="latitude" id="field_latitude" data-cy="latitude" formControlName="latitude" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.longitude" for="field_longitude">Longitude</label>
+                <input type="number" class="form-control" name="longitude" id="field_longitude" data-cy="longitude" formControlName="longitude" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.logo" for="field_logo">Logo</label>
+                <div>
+                  <div *ngIf="editForm.get('logo')!.value" class="form-text text-danger clearfix">
+                    <a
+                      class="pull-start"
+                      (click)="openFile(editForm.get('logo')!.value!, editForm.get('logoContentType')!.value!)"
+                      jhiTranslate="entity.action.open"
+                    >Open</a
+                    ><br />
+                    <span class="pull-start">{{ editForm.get('logoContentType')!.value }}, {{ byteSize(editForm.get('logo')!.value!) }}</span>
+                    <button
+                      type="button"
+                      (click)="editForm.patchValue({ logo: undefined, logoContentType: undefined })"
+                      class="btn btn-secondary btn-xs pull-end"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                    </button>
+                  </div>
+                  <input
+                    type="file"
+                    id="file_logo"
+                    data-cy="logo"
+                    (change)="setFileData($event, 'logo', false)"
+                    jhiTranslate="entity.action.addblob"
+                  />
+                </div>
+                <input type="hidden" class="form-control" name="logo" id="field_logo" data-cy="logo" formControlName="logo" />
+                <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType" formControlName="logoContentType" />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.commercial" for="field_commercial">Commercial</label>
+                <select
+                  class="form-select"
+                  id="field_commercial"
+                  data-cy="commercial"
+                  name="commercial"
+                  formControlName="commercial"
+                  [compareWith]="compareEmployee"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+                    {{ employeeOption.employeeName }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"   for="field_customerSource">Source Client</label>
+                <select
+                  class="form-select"
+                  id="field_customerSource"
+                  data-cy="customerSource"
+                  name="customerSource"
+                  formControlName="customerSource"
+                  [compareWith]="compareCrmCOntactSource"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="crmCOntactSourceOption" *ngFor="let crmCOntactSourceOption of crmCOntactSourcesSharedCollection">
+                    {{ crmCOntactSourceOption.contactSource }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_aboutSource">A propos de la Source</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="aboutSource"
+                  id="field_aboutSource"
+                  data-cy="aboutSource"
+                  formControlName="aboutSource"
+                />
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.nombreEmployee" for="field_nombreEmployee">Nombre Employee</label>
+                <select
+                  class="form-select"
+                  id="field_nombreEmployee"
+                  data-cy="nombreEmployee"
+                  name="nombreEmployee"
+                  formControlName="nombreEmployee"
+                  [compareWith]="compareEmployerNumber"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="employerNumberOption" *ngFor="let employerNumberOption of employerNumbersSharedCollection">
+                    {{ employerNumberOption.emplNumber }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm"  for="field_categorie">Categorie</label>
+                <select
+                  class="form-select"
+                  id="field_categorie"
+                  data-cy="categorie"
+                  name="categorie"
+                  formControlName="categorie"
+                  [compareWith]="compareCustomerCategory"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="customerCategoryOption" *ngFor="let customerCategoryOption of customerCategoriesSharedCollection">
+                    {{ customerCategoryOption.catName }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label-sm" jhiTranslate="scibscrmApp.customer.caMonnaie" for="field_caMonnaie">Ca Monnaie</label>
+                <select
+                  class="form-control"
+                  id="field_caMonnaie"
+                  data-cy="caMonnaie"
+                  name="caMonnaie"
+                  formControlName="caMonnaie"
+                  [compareWith]="compareMonnaie"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="monnaieOption" *ngFor="let monnaieOption of monnaiesSharedCollection">{{ monnaieOption.moneyName }}</option>
+                </select>
+              </div>
+
+              <div class="row mb-3" *ngFor="let item of crmContactList">
+                <jhi-search-contact [crmContact]="item" (results)="handleResults($event)" (deleteEvent)="onContactDelete($event)"></jhi-search-contact>
+              </div>
+              <div class="row mb-3">
+                <button (click)="ajouterContact($event)" class="btn btn-secondary">Ajouter participant</button>
+
+              </div>
+
+            </div>
+
+            <div>
+              <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+              </button>
+
+              <button
+                type="submit"
+                id="save-entity"
+                data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary"
+              >
+                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+              </button>
+            </div>
+          </form>
+
+
+      </div>
+
+      <div class="col-lg-6">
+        <div id="map" style="height: 600px"></div>
+        <jhi-activite-player [customer]="customer"></jhi-activite-player>
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,26 @@
+{
+  "scibscrmApp": {
+    "crmWilaya": {
+      "home": {
+        "title": "CrmWilayas",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Wilaya",
+        "createOrEditLabel": "Créer ou éditer un Crm Wilaya",
+        "notFound": "Aucun Crm Wilaya trouvé"
+      },
+      "created": "Un nouveau Crm Wilaya a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Wilaya avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Wilaya avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Wilaya {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Wilaya"
+      },
+      "id": "ID",
+      "wilayaName": "Wilaya Name",
+      "crmCommune": "Crm Commune",
+      "crmCountry": "Crm Country"
+    }
+  }
+}

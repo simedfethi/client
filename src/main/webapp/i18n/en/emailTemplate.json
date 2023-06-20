@@ -1,0 +1,31 @@
+{
+  "scibscrmApp": {
+    "emailTemplate": {
+      "home": {
+        "title": "Email Templates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Email Template",
+        "createOrEditLabel": "Create or edit a Email Template",
+        "notFound": "No Email Templates found"
+      },
+      "created": "A new Email Template is created with identifier {{ param }}",
+      "updated": "A Email Template is updated with identifier {{ param }}",
+      "deleted": "A Email Template is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Email Template {{ id }}?"
+      },
+      "detail": {
+        "title": "Email Template"
+      },
+      "id": "ID",
+      "templateName": "Template Name",
+      "emailSubject": "Email Subject",
+      "templateContent": "Template Content",
+      "tempType": "Temp Type",
+      "htmlContent": "Html Content",
+      "useCount": "Use Count",
+      "createdAt": "Created At",
+      "attachments": "Attachments"
+    }
+  }
+}

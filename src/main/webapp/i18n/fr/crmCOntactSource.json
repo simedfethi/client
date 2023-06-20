@@ -1,0 +1,24 @@
+{
+  "scibscrmApp": {
+    "crmCOntactSource": {
+      "home": {
+        "title": "CrmCOntactSources",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm C Ontact Source",
+        "createOrEditLabel": "Créer ou éditer un Crm C Ontact Source",
+        "notFound": "Aucun Crm C Ontact Source trouvé"
+      },
+      "created": "Un nouveau Crm C Ontact Source a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm C Ontact Source avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm C Ontact Source avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm C Ontact Source {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm C Ontact Source"
+      },
+      "id": "ID",
+      "contactSource": "Contact Source"
+    }
+  }
+}

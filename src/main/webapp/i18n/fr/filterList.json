@@ -1,0 +1,26 @@
+{
+  "scibscrmApp": {
+    "filterList": {
+      "home": {
+        "title": "FilterLists",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Filter List",
+        "createOrEditLabel": "Créer ou éditer un Filter List",
+        "notFound": "Aucun Filter List trouvé"
+      },
+      "created": "Un nouveau Filter List a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Filter List avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Filter List avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Filter List {{ id }} ?"
+      },
+      "detail": {
+        "title": "Filter List"
+      },
+      "id": "ID",
+      "filterName": "Filter Name",
+      "filterString": "Filter String",
+      "entname": "Entname"
+    }
+  }
+}

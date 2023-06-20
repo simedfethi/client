@@ -1,0 +1,30 @@
+{
+  "scibscrmApp": {
+    "productvariante": {
+      "home": {
+        "title": "Productvariantes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Productvariante",
+        "createOrEditLabel": "Create or edit a Productvariante",
+        "notFound": "No Productvariantes found"
+      },
+      "created": "A new Productvariante is created with identifier {{ param }}",
+      "updated": "A Productvariante is updated with identifier {{ param }}",
+      "deleted": "A Productvariante is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Productvariante {{ id }}?"
+      },
+      "detail": {
+        "title": "Productvariante"
+      },
+      "id": "ID",
+      "picture": "Picture",
+      "codebarre": "Codebarre",
+      "productCode": "Product Code",
+      "salePrice": "Sale Price",
+      "uniteMesure": "Unite Mesure",
+      "stockDisponible": "Stock Disponible",
+      "product": "Product"
+    }
+  }
+}

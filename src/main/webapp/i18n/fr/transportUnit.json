@@ -1,0 +1,30 @@
+{
+  "scibscrmApp": {
+    "transportUnit": {
+      "home": {
+        "title": "TransportUnits",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Transport Unit",
+        "createOrEditLabel": "Créer ou éditer un Transport Unit",
+        "notFound": "Aucun Transport Unit trouvé"
+      },
+      "created": "Un nouveau Transport Unit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Transport Unit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Transport Unit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Transport Unit {{ id }} ?"
+      },
+      "detail": {
+        "title": "Transport Unit"
+      },
+      "id": "ID",
+      "tunitName": "Tunit Name",
+      "tunitmatricule": "Tunitmatricule",
+      "tunitmatriculeRem": "Tunitmatricule Rem",
+      "tunitmarque": "Tunitmarque",
+      "tunitmodel": "Tunitmodel",
+      "tunitcolor": "Tunitcolor",
+      "tcapacity": "Tcapacity"
+    }
+  }
+}

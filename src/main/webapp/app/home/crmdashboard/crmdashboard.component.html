@@ -1,0 +1,214 @@
+<div class="card">
+  <div class="card-header d-sm-flex align-items-sm-center py-sm-0">
+    <h5 class="py-sm-2 my-sm-1">Statistiques</h5>
+    <div class="mt-2 mt-sm-0 ms-sm-auto">
+      <div>
+        <label for="start-date">du:</label>
+        <input [(ngModel)]="startDate" type="date" id="start-date" name="start-date">
+        <label for="end-date">au:</label>
+        <input [(ngModel)]="endDate" type="date" id="end-date" name="end-date">
+        <button (click)="prospectNouveau()" type="button" id="apply-button">Appliquer</button>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="card-body pb-0">
+    <div class="row text-center">
+      <div class="col-4">
+        <div class="mb-3">
+          <h2 class="mb-0">{{crmstatistic?.nbVisite}}</h2>
+          <div class="text-muted fs-sm">visites</div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="mb-3">
+          <h3 class="mb-0">{{crmstatistic?.nbNewprospect}}</h3>
+          <div class="text-muted fs-sm">nouveau prospects</div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="mb-3">
+          <h1 class="mb-0">{{crmstatistic?.nbConverti}}</h1>
+          <div class="text-muted fs-sm">prospect converti</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h5 class="mb-0">Par Wilaya</h5>
+
+
+  </div>
+
+<div class="row">
+
+
+  <div class="col-6">
+    <div id="chart" style="height: 400px;"></div>
+
+  </div>
+  <div class="col-6">
+    <div class="table-responsive">
+      <table class="table text-nowrap">
+        <thead>
+        <tr>
+          <th>Wilaya</th>
+          <th>Prospects visités</th>
+          <th>Prospects convertis</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let crmwilaya of crmstatistic?.crmStatisticsWilayaList">
+          <td>
+            {{crmwilaya.wilayaName}}
+          </td>
+          <td><span class="text-muted">{{crmwilaya.nbVisite}}</span></td>
+          <td><span class="text-success"> {{crmwilaya.nbConverti}}</span></td>
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h5 class="mb-0">Par Commercial</h5>
+
+
+  </div>
+  <div class="row">
+
+
+    <div class="col-6">
+      <div id="chartcommercial" style="height: 400px;"></div>
+
+    </div>
+    <div class="col-6">
+      <div class="table-responsive">
+        <table class="table text-nowrap">
+          <thead>
+          <tr>
+            <th>Commercial</th>
+            <th>Prospects visités</th>
+            <th>Prospects convertis</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let crmcommercial of crmstatistic?.crmStatisticsCommercials">
+            <td>
+              {{crmcommercial.commercialName}}
+            </td>
+            <td><span class="text-muted">{{crmcommercial.nbVisite}}</span></td>
+            <td><span class="text-success"> {{crmcommercial.nbConverti}}</span></td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h5 class="mb-0">Par Categorie Client</h5>
+
+
+  </div>
+  <div class="row">
+
+
+    <div class="col-6">
+      <div id="chartcategorie" style="height: 400px;"></div>
+
+    </div>
+    <div class="col-6">
+      <div class="table-responsive">
+        <table class="table text-nowrap">
+          <thead>
+          <tr>
+            <th>Categorie</th>
+            <th>Prospects visités</th>
+            <th>Prospects convertis</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let crmcommercial of crmstatistic?.crmStatisticsCategorieClients">
+            <td>
+              {{crmcommercial.categorieName}}
+            </td>
+            <td><span class="text-muted">{{crmcommercial.nbVisite}}</span></td>
+            <td><span class="text-success"> {{crmcommercial.nbConverti}}</span></td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h5 class="mb-0">Par Etape</h5>
+
+  </div>
+  <div class="row">
+
+
+    <div class="col-6">
+      <div id="chartetape" style="height: 400px;"></div>
+
+    </div>
+    <div class="col-6">
+      <div class="table-responsive">
+        <table class="table text-nowrap">
+          <thead>
+          <tr>
+            <th>Etape</th>
+            <th>Prospects</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let crmcommercial of crmstatistic?.crmStatisticsEtapeCrms">
+            <td>
+              {{crmcommercial.etapeName}}
+            </td>
+            <td><span class="text-muted">{{crmcommercial.nbprospect}}</span></td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+<div>
+  {{crmstatistic?.nbConverti}}
+</div>
+</div>
+

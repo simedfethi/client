@@ -1,0 +1,29 @@
+{
+  "scibscrmApp": {
+    "markSegment": {
+      "home": {
+        "title": "MarkSegments",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mark Segment",
+        "createOrEditLabel": "Créer ou éditer un Mark Segment",
+        "notFound": "Aucun Mark Segment trouvé"
+      },
+      "created": "Un nouveau Mark Segment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mark Segment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mark Segment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Mark Segment {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mark Segment"
+      },
+      "id": "ID",
+      "segmentName": "Segment Name",
+      "customerFilter": "Customer Filter",
+      "contactFilter": "Contact Filter",
+      "destinataires": "Destinataires",
+      "createdAt": "Created At",
+      "markCompaign": "Mark Compaign"
+    }
+  }
+}

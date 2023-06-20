@@ -1,0 +1,53 @@
+{
+  "scibscrmApp": {
+    "crmContact": {
+      "home": {
+        "title": "Crm Contacts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Crm Contact",
+        "createOrEditLabel": "Create or edit a Crm Contact",
+        "notFound": "No Crm Contacts found"
+      },
+      "created": "A new Crm Contact is created with identifier {{ param }}",
+      "updated": "A Crm Contact is updated with identifier {{ param }}",
+      "deleted": "A Crm Contact is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Crm Contact {{ id }}?"
+      },
+      "detail": {
+        "title": "Crm Contact"
+      },
+      "id": "ID",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "emailAddress": "Email Address",
+      "jobTitle": "Job Title",
+      "contactJob": "Contact Job",
+      "businessPhone": "Business Phone",
+      "homePhone": "Home Phone",
+      "mobilePhone": "Mobile Phone",
+      "faxNumber": "Fax Number",
+      "addresse": "Addresse",
+      "naissanceDate": "Naissance Date",
+      "photo": "Photo",
+      "wilaya": "Wilaya",
+      "daira": "Daira",
+      "codePostal": "Code Postal",
+      "commune": "Commune",
+      "pays": "Pays",
+      "webPage": "Web Page",
+      "aboutSource": "About Source",
+      "notes": "Notes",
+      "createdTime": "Created Time",
+      "lastUpdate": "Last Update",
+      "contacttype": "Contacttype",
+      "crmContactSource": "Crm Contact Source",
+      "responsable": "Responsable",
+      "societe": "Societe",
+      "activite": "Activite",
+      "crmDocument": "Crm Document",
+      "customer": "Customer",
+      "transactionCRM": "Transaction CRM"
+    }
+  }
+}

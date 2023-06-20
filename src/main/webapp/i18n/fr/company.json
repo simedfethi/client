@@ -1,0 +1,40 @@
+{
+  "scibscrmApp": {
+    "company": {
+      "home": {
+        "title": "Companies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Company",
+        "createOrEditLabel": "Créer ou éditer un Company",
+        "notFound": "Aucun Company trouvé"
+      },
+      "created": "Un nouveau Company a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Company avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Company avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Company {{ id }} ?"
+      },
+      "detail": {
+        "title": "Company"
+      },
+      "id": "ID",
+      "company": "Company",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "emailAddress": "Email Address",
+      "jobTitle": "Job Title",
+      "businessPhone": "Business Phone",
+      "homePhone": "Home Phone",
+      "mobilePhone": "Mobile Phone",
+      "faxNumber": "Fax Number",
+      "address": "Address",
+      "city": "City",
+      "stateProvince": "State Province",
+      "zipPostalCode": "Zip Postal Code",
+      "countryRegion": "Country Region",
+      "webPage": "Web Page",
+      "notes": "Notes",
+      "attachments": "Attachments"
+    }
+  }
+}

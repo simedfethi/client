@@ -1,0 +1,27 @@
+{
+  "scibscrmApp": {
+    "crmPermission": {
+      "home": {
+        "title": "CrmPermissions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Crm Permission",
+        "createOrEditLabel": "Créer ou éditer un Crm Permission",
+        "notFound": "Aucun Crm Permission trouvé"
+      },
+      "created": "Un nouveau Crm Permission a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Crm Permission avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Crm Permission avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Crm Permission {{ id }} ?"
+      },
+      "detail": {
+        "title": "Crm Permission"
+      },
+      "id": "ID",
+      "pName": "P Name",
+      "pDescription": "P Description",
+      "crmRole": "Crm Role",
+      "employee": "Employee"
+    }
+  }
+}

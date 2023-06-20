@@ -1,0 +1,31 @@
+{
+  "scibscrmApp": {
+    "supplierOffer": {
+      "home": {
+        "title": "Supplier Offers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Supplier Offer",
+        "createOrEditLabel": "Create or edit a Supplier Offer",
+        "notFound": "No Supplier Offers found"
+      },
+      "created": "A new Supplier Offer is created with identifier {{ param }}",
+      "updated": "A Supplier Offer is updated with identifier {{ param }}",
+      "deleted": "A Supplier Offer is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Supplier Offer {{ id }}?"
+      },
+      "detail": {
+        "title": "Supplier Offer"
+      },
+      "id": "ID",
+      "regularPrice": "Regular Price",
+      "discountPrice": "Discount Price",
+      "notes": "Notes",
+      "product": "Product",
+      "uniteMesure": "Unite Mesure",
+      "supplier": "Supplier",
+      "transactionCRM": "Transaction CRM",
+      "deliveryTerm": "Delivery Term"
+    }
+  }
+}

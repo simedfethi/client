@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productvariante">
+      <h2 data-cy="productvarianteDetailsHeading"><span jhiTranslate="scibscrmApp.productvariante.detail.title">Productvariante</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productvariante.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="productvariante.picture">
+            <a (click)="openFile(productvariante.picture, productvariante.pictureContentType)">
+              <img
+                [src]="'data:' + productvariante.pictureContentType + ';base64,' + productvariante.picture"
+                style="max-width: 100%"
+                alt="productvariante image"
+              />
+            </a>
+            {{ productvariante.pictureContentType }}, {{ byteSize(productvariante.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.codebarre">Codebarre</span></dt>
+        <dd>
+          <span>{{ productvariante.codebarre }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.productCode">Product Code</span></dt>
+        <dd>
+          <span>{{ productvariante.productCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.salePrice">Sale Price</span></dt>
+        <dd>
+          <span>{{ productvariante.salePrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.uniteMesure">Unite Mesure</span></dt>
+        <dd>
+          <span>{{ productvariante.uniteMesure }}</span>
+        </dd>
+        <dt><span jhiTranslate="scibscrmApp.productvariante.stockDisponible">Stock Disponible</span></dt>
+        <dd>
+          <span>{{ productvariante.stockDisponible }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/productvariante', productvariante.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

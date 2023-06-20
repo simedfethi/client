@@ -1,0 +1,31 @@
+{
+  "scibscrmApp": {
+    "supplierOffer": {
+      "home": {
+        "title": "SupplierOffers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Supplier Offer",
+        "createOrEditLabel": "Créer ou éditer un Supplier Offer",
+        "notFound": "Aucun Supplier Offer trouvé"
+      },
+      "created": "Un nouveau Supplier Offer a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Supplier Offer avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Supplier Offer avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Supplier Offer {{ id }} ?"
+      },
+      "detail": {
+        "title": "Supplier Offer"
+      },
+      "id": "ID",
+      "regularPrice": "Regular Price",
+      "discountPrice": "Discount Price",
+      "notes": "Notes",
+      "product": "Product",
+      "uniteMesure": "Unite Mesure",
+      "supplier": "Supplier",
+      "transactionCRM": "Transaction CRM",
+      "deliveryTerm": "Delivery Term"
+    }
+  }
+}

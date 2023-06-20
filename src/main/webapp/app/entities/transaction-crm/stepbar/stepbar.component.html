@@ -1,0 +1,10 @@
+<div class="step">
+  <div
+       [ngClass]="getClassOf(transactionEtape)"
+       (mouseenter)="onmouseenter($event,transactionEtape)"
+       (click)="onclick($event,transactionEtape)"
+       (mouseleave)="onmouseleave($event,transactionEtape)"
+       *ngFor="let transactionEtape of transactionEtapesSharedCollection">
+    {{  transactionEtape.teName}}
+  </div>
+</div>

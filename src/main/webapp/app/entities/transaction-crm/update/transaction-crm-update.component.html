@@ -1,0 +1,463 @@
+<div class="m-3" *ngIf="transactionCRM">
+  <div class="page-header page-header-light shadow">
+    <div class="d-flex">
+      <div class="m-1">
+        <h2
+          id="jhi-transaction-crm-heading"
+          data-cy="TransactionCRMCreateUpdateHeading"
+
+        >
+          Fiche Transaction
+        </h2>
+
+      </div>
+       <div class="m-1" *ngIf="!transactionCRM.trValidated">
+        <button class="btn btn-success" (click)="validerTransaction()"> Valider Transaction</button>
+      </div>
+      <div class="m-1  d-flex align-items-center justify-content-center" *ngIf="transactionCRM.trValidated">
+        <span class="badge bg-success ms-2">Validée</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="m-3">
+  <div class="row">
+    <jhi-stepbar #stepbarComponent [transactionCrm]="transactionCRM"></jhi-stepbar>
+    <div class="row m-1">
+
+      <div class="col-lg-6">
+        <form name="editForm" role="form" novalidate   [formGroup]="editForm">
+          <div>
+            <jhi-alert-error></jhi-alert-error>
+
+            <div class="row mb-3">
+              <jhi-search-customer #searchCustomerComponent [customer]="transactionCRM?.client" (results)="handleCustomer($event)"></jhi-search-customer>
+            </div>
+
+            <div class="row mb-3" *ngFor="let item of crmContactList">
+              <jhi-search-contact [crmContact]="item" (results)="handleResults($event)"
+                                  (deleteEvent)="handledeleteContact($event)"
+                                  (savedContact)="handleNewContact($event)"
+              ></jhi-search-contact>
+            </div>
+            <div class="btn btn-link" (click)="ajouterContact()">Ajouter Contact</div>
+
+
+            <div class="row mb-3">
+              <label class="col-form-label-sm"  for="field_reference"
+              >Reference</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="reference"
+                id="field_reference"
+                data-cy="reference"
+                formControlName="reference"
+              />
+              <div
+                *ngIf="editForm.get('reference')!.invalid && (editForm.get('reference')!.dirty || editForm.get('reference')!.touched)"
+              >
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('reference')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_telephone">Telephone</label>
+              <input
+                type="text"
+                class="form-control"
+                name="telephone"
+                id="field_telephone"
+                data-cy="telephone"
+                formControlName="telephone"
+              />
+              <div
+                *ngIf="editForm.get('telephone')!.invalid && (editForm.get('telephone')!.dirty || editForm.get('telephone')!.touched)"
+              >
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('telephone')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_wilaya">Wilaya</label>
+              <select class="form-control" name="wilaya" formControlName="wilaya" id="field_wilaya" data-cy="source">
+                <option [ngValue]="null">{{ 'scibscrmApp.TransactionSource.null' | translate }}</option>
+                <option *ngFor="let crmWilaya of crmWilayas" [value]="crmWilaya.wilayaName">
+                  {{  crmWilaya.wilayaName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_daira">Daira</label>
+              <select class="form-control" name="daira" formControlName="daira" id="field_daira" data-cy="source">
+                <option [ngValue]="null">{{ 'scibscrmApp.TransactionSource.null' | translate }}</option>
+                <option *ngFor="let daira of crmDaira" [value]="daira.dairaName">
+                  {{ daira.dairaName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_commune">Commune</label>
+              <select class="form-control" name="commune" formControlName="commune" id="field_commune" data-cy="commune">
+                <option [ngValue]="null">{{ 'scibscrmApp.TransactionSource.null' | translate }}</option>
+                <option *ngFor="let commune of crmCommune" [value]="commune.communeName">
+                  {{ commune.communeName }}
+                </option>
+              </select>
+
+            </div>
+            <div class="row mb-3">
+              <label class="form-label"   for="field_lastActivity">Last Activity</label>
+              <div class="d-flex">
+                <input
+                  id="field_lastActivity"
+                  data-cy="lastActivity"
+                  type="datetime-local"
+                  class="form-control"
+                  name="lastActivity"
+                  formControlName="lastActivity"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_delai">Delai</label>
+              <input type="number" class="form-control" name="delai" id="field_delai" data-cy="delai" formControlName="delai" />
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_etapeDepuis">Etape Depuis</label>
+              <div class="d-flex">
+                <input
+                  id="field_etapeDepuis"
+                  data-cy="etapeDepuis"
+                  type="datetime-local"
+                  class="form-control"
+                  name="etapeDepuis"
+                  formControlName="etapeDepuis"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_avancement">Avancement</label>
+              <select
+                class="form-control"
+                id="field_avancement"
+                data-cy="avancement"
+                name="avancement"
+                formControlName="avancement"
+                [compareWith]="compareCrmAvancement"
+              >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="crmAvancementOption" *ngFor="let crmAvancementOption of crmAvancementsSharedCollection">
+                  {{ crmAvancementOption.avanName }}
+                </option>
+              </select>
+            </div>
+
+
+
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_adresse">Adresse</label>
+              <textarea class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse"></textarea>
+            </div>
+
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_locationUrl">Google maps URL</label>
+              <input
+                type="text"
+                class="form-control"
+                name="locationUrl"
+                id="field_locationUrl"
+                data-cy="locationUrl"
+                formControlName="locationUrl"
+              />
+            </div>
+
+
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_source">Source</label>
+              <select class="form-control" name="source" formControlName="source" id="field_source" data-cy="source">
+                <option [ngValue]="null">{{ 'scibscrmApp.TransactionSource.null' | translate }}</option>
+                <option *ngFor="let transactionSource of transactionSourceValues" [value]="transactionSource">
+                  {{ 'scibscrmApp.TransactionSource.' + transactionSource | translate }}
+                </option>
+              </select>
+            </div>
+
+
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_chargeAffaire">Charge Affaire</label
+              >
+              <select
+                class="form-control"
+                id="field_chargeAffaire"
+                data-cy="chargeAffaire"
+                name="chargeAffaire"
+                formControlName="chargeAffaire"
+                [compareWith]="compareEmployee"
+              >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">
+                  {{ employeeOption.employeeName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="scibscrmApp.transactionCRM.trStatus" for="field_trStatus">Tr Status</label>
+              <select
+                class="form-control"
+                id="field_trStatus"
+                data-cy="trStatus"
+                name="trStatus"
+                formControlName="trStatus"
+                [compareWith]="compareProjectStatus"
+              >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="projectStatusOption" *ngFor="let projectStatusOption of projectStatusesSharedCollection">
+                  {{ projectStatusOption.stName }}
+                </option>
+              </select>
+            </div>
+
+
+            <div class="row mb-3">
+              <label class="form-label"  for="field_attachments">Photo</label>
+              <div>
+                <div *ngIf="editForm.get('attachments')!.value" class="form-text text-danger clearfix">
+                  <a
+                    class="pull-start"
+                    (click)="openFile(editForm.get('attachments')!.value!, editForm.get('attachmentsContentType')!.value!)"
+                    jhiTranslate="entity.action.open"
+                  >Open</a
+                  ><br />
+                  <span class="pull-start"
+                  >{{ editForm.get('attachmentsContentType')!.value }}, {{ byteSize(editForm.get('attachments')!.value!) }}</span
+                  >
+                  <button
+                    type="button"
+                    (click)="editForm.patchValue({ attachments: undefined, attachmentsContentType: undefined })"
+                    class="btn btn-secondary btn-xs pull-end"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                  </button>
+                </div>
+                <input
+                  type="file"
+                  id="file_attachments"
+                  data-cy="attachments"
+                  (change)="setFileData($event, 'attachments', false)"
+                  jhiTranslate="entity.action.addblob"
+                />
+              </div>
+              <input
+                type="hidden"
+                class="form-control"
+                name="attachments"
+                id="field_attachments"
+                data-cy="attachments"
+                formControlName="attachments"
+              />
+              <input
+                type="hidden"
+                class="form-control"
+                name="attachmentsContentType"
+                id="field_attachmentsContentType"
+                formControlName="attachmentsContentType"
+              />
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label"   for="field_qteAnnuelle">Qte Annuelle</label>
+              <input
+                type="number"
+                class="form-control"
+                name="qteAnnuelle"
+                id="field_qteAnnuelle"
+                data-cy="qteAnnuelle"
+                formControlName="qteAnnuelle"
+              />
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+
+
+
+        </form>
+
+      </div>
+      <div class="col-lg-6 mt-3 ">
+        <jhi-activite-player [customer]="transactionCRM?.client"></jhi-activite-player>
+        <div id="map" style="height: 600px"></div>
+      </div>
+
+    </div>
+    <div class="row" *ngIf="transactionCRM?.id !== null">
+      <div class="d-flex m-1">
+        <button class="btn btn-primary" (click)="addligne()">Ajouter</button>
+        <button class="btn btn-primary" (click)="savelignes()" [disabled]="invoiceForm.invalid">Enrégistrer</button>
+      </div>
+      <div class="table-responsive table-sm table-entities" id="entities" *ngIf="transactionCRM?.id !== null">
+        <form [formGroup]="invoiceForm">
+          <table class="table table-hover" aria-describedby="page-heading">
+            <thead>
+            <tr class="p-0 m-0">
+               <th class="col-6 p-1" scope="col">
+                <div class="d-flex">
+                  <span>Désignation</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </div>
+              </th>
+
+              <th class="col-2 p-1" scope="col">
+                <div class="d-flex">
+                  <span>Unité</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th class="col-2 p-1" scope="col">
+                <div class="d-flex">
+                  <span>Quantité</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th class="col-5 p-1" scope="col">
+                <div class="d-flex">
+                  <span>Source</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <tbody formArrayName="Rows">
+            <tr class="p-0 m-0" *ngFor="let pro of lessons.controls; let i = index" [formGroupName]="i">
+
+              <td class="col-6 p-1">
+                  <select
+                    class="form-control"
+                    id="field_produit"
+                    data-cy="produit"
+                    name="produit"
+                    formControlName="produit"
+                    [compareWith]="compareProduct"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="productOption" *ngFor="let productOption of productsSharedCollection">
+                      {{ productOption.designation }}
+                    </option>
+                  </select>
+               </td>
+                <td class="col-2 p-1">
+                  <select
+                    class="form-control"
+                    id="field_unite"
+                    data-cy="unite"
+                    name="unite"
+                    formControlName="unite"
+                    [compareWith]="compareUniteMesure"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="uniteMesureOption" *ngFor="let uniteMesureOption of uniteMesuresSharedCollection">
+                      {{ uniteMesureOption.unitShortName }}
+                    </option>
+                  </select>
+                </td>
+                <td class="col-2 p-1">
+                  <input type="number" class="form-control" name="qte" id="field_qte" data-cy="qte" formControlName="qte" />
+
+                </td>
+              <td class="col-5 p-1">
+                <select
+                  class="form-control"
+                  id="field_sourceAprov"
+                  data-cy="sourceAprov"
+                  name="sourceAprov"
+                  formControlName="sourceAprov"
+                  [compareWith]="compareCrmConcurrent"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="crmConcurrentOption" *ngFor="let crmConcurrentOption of crmConcurrentsSharedCollection">
+                    {{ crmConcurrentOption.company }}
+                  </option>
+                </select>
+              </td>
+              <td class="p-1">
+                <button type="submit" (click)="deletelignecrm(pro)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+    <div class="mt-3">
+
+      <button
+        type="button"
+        id="cancel-save"
+        data-cy="entityCreateCancelButton"
+        class="btn btn-secondary"
+        (click)="previousState()"
+      >
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button
+        type="button"
+        (click)="save()"
+        id="save-entity"
+        data-cy="entityCreateSaveButton"
+        [disabled]="editForm.invalid || isSaving"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+      </button>
+    </div>
+
+  </div>
+</div>

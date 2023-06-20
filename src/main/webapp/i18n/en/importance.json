@@ -1,0 +1,10 @@
+{
+  "scibscrmApp": {
+    "Importance": {
+      "null": "",
+      "FAIBLE": "FAIBLE",
+      "MOYENNE": "MOYENNE",
+      "IMPORTANT": "IMPORTANT"
+    }
+  }
+}
